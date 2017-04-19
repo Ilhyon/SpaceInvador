@@ -1,4 +1,4 @@
 
-public class Alien {
-
+public class Alien{
+	
 }
