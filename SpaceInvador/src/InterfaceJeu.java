@@ -27,6 +27,7 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		super("Super Space Invador");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		/* Création du container qui sera découper en 3 lignes (expliqué plus bas)*/
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		c.setLayout(new GridLayout(3,1));
@@ -66,6 +67,8 @@ public class InterfaceJeu extends JFrame implements ActionListener
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
+		 * mettre son pseudo dans le jlabel pseudo*/
 		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
 		{
 			Joueur j = new Joueur();

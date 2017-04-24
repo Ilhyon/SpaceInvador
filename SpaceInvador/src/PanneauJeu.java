@@ -10,13 +10,16 @@ public class PanneauJeu extends JComponent implements ActionListener
 {
 	public static final int LONGUEUR = 800;
 	Ligne listeAlien;
-	int x, y;
+	Vaisseau normandy;
 	
 	public PanneauJeu()
 	{
+		/* Ini du panneau avec une taille 400 (test) plus création des éléments présents  
+		 * initiallement dedans (ligne, vasseau) */
 		super();
 		setPreferredSize(new Dimension(LONGUEUR, 400));
 		listeAlien = new Ligne();
+		normandy  = new Vaisseau(195);
 	}
 	
 	public void paintComponent(Graphics g)

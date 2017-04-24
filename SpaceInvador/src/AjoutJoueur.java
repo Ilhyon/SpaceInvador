@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 /** Classe qui permet de faire une fenêtre pour ajouter un joueur. Elle est créée de la même façon que 
  * "ajout personne" du TP 5. */
 public class AjoutJoueur extends JDialog implements ActionListener{
+	
+	/* Attribut de la classe*/
 	JButton fermer, afficher;
 	JTextField champPseudo;
 	JLabel labelPseudo;
@@ -22,12 +24,15 @@ public class AjoutJoueur extends JDialog implements ActionListener{
 	public AjoutJoueur(JFrame f, Joueur j)
 	{
 		super(f, "Nouveau joueur", true);
-		this.j=j;
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.j=j; // pour "lier" le joueur de l'interface au joueur de l'ajout
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);// pour que si on ferme cette fenêtre on ne quitte pas tout le jeu
 		
+		/* Création du container avec 2 lignes : une pour le champ et le label et 
+		 * l'autre pour les boutons */
 		Container c = getContentPane();
-		c.setLayout(new GridLayout(3,1));
-				
+		c.setLayout(new GridLayout(2,1));
+		
+		/* Création de la ligne qui contiendra les champs du pseudo (un bouton et un jlabel*/
 		JPanel panelPseudo= new JPanel();
 		panelPseudo.setLayout(new FlowLayout(FlowLayout.LEFT));
 		labelPseudo = new JLabel("Pseudo du joueur :");
@@ -36,6 +41,9 @@ public class AjoutJoueur extends JDialog implements ActionListener{
 		panelPseudo.add(champPseudo);
 		c.add(panelPseudo);
 		
+		/* Création de la ligne qui contiendra les boutons de la fenêtre (un pour fermer la fenêtre et l'autre
+		 * pour ajouter un joueur
+		 */
 		JPanel panelBoutons = new JPanel();
 		panelBoutons.setLayout(new FlowLayout(FlowLayout.CENTER));
 		fermer = new JButton("Fermer");
@@ -50,6 +58,7 @@ public class AjoutJoueur extends JDialog implements ActionListener{
 		setVisible(true);
 	}
 	
+	/* Pour gere les action sur les deux boutons */
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getActionCommand().equals("Fermer"))
