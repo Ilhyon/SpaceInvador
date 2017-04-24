@@ -8,7 +8,7 @@ public class Alien extends Ellipse2D.Double
 	public static final int DIAMETRE = 50;
 	int solidite;
 	
-	// constructeur
+	/* Constructeur */
 	public Alien(int centreX, int centreY)
 	{
 		super(centreX-DIAMETRE/2, centreY-DIAMETRE/2, DIAMETRE, DIAMETRE);
@@ -16,16 +16,23 @@ public class Alien extends Ellipse2D.Double
 		solidite = 1+r.nextInt(5);
 	}
 	
-	// Pour avoir le rectangle autour du rond
+	/* Pour avoir le rectangle autour du rond */
 	public boolean intersect(Alien a)
 	{
 		return intersects(a.getBounds2D());
 	}
 
-	// Pour descendre
+	/* Pour descendre */
 	public void descendre()
 	{
 		super.y += PAS;
 	}
+	
+	/* Perte de solidité */
+	public void perteSolidite()
+	{
+		solidite --;  
+	}
+	
 	
 }
