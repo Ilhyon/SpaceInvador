@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -12,14 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class InterfaceJeu extends JFrame implements ActionListener
+public class InterfaceJeu extends JFrame implements KeyListener
 {
 	/* Elements initiaux dont on va avoir besoin*/
-	JButton ajoutJoueur; // Bouton pour ajouter un nouveau joueur qui ne devra pas etre tout le temps dispo
 	JLabel pseudo, niveau, score; // Affichage de ces elements en haut de la page
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
+	Timer timerRefresh;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -39,10 +41,6 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		niveau = new JLabel("Niveau : 0");
 		score = new JLabel("Score : 0");
 		
-		/* Ini du bouton pour un nouveau joueur */
-		ajoutJoueur = new JButton("Ajouter un nouveau joueur");
-		ajoutJoueur.addActionListener(this);
-		
 		/* Ini des lignes pour la mise en forme de la page, il y aura 3 lignes : une avec les 
 		 * JLabels, une avec le pnneau de jeu et la dernière avec le classement */
 		JPanel panelAffichage = new JPanel();
@@ -59,6 +57,16 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		c.add(panelAffichage);
 		c.add(panelPanneau);
 		c.add(panelClassement);
+		
+		timerRefresh = new Timer(40, new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) {
+				repaint();
+			}
+		});
+		
+		timerRefresh.start();
+		addKeyListener(this);
 		
 		
 		pack();
@@ -77,15 +85,45 @@ public class InterfaceJeu extends JFrame implements ActionListener
 //		}
 //	}
 	
+	public void keyPressed(KeyEvent e) 
+	{
+		boolean direction;
+		System.out.println("test");
+		/* je fais différent if pour que si le joueur appuit sur plusieurs touches elles puissent 
+		être toutes testées */
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) // droite
+		{
+			direction = true;
+			panneau.normandy.deplacer(direction);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
+		{
+			direction = false;
+			panneau.normandy.deplacer(direction);
+		}
+		
+		repaint();
+	}
+
+	public void keyReleased(KeyEvent e) 
+	{	
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) // droite
+		{
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
+		{
+		}
+		repaint();
+	}
+
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	
 	public static void main(String[] args) 
 	{
 		new AjoutJoueur();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
