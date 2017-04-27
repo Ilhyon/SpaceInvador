@@ -1,3 +1,6 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
@@ -19,9 +22,15 @@ public class Missile extends Ellipse2D.Double
 	{
 		return intersects(m.getBounds2D());
 	}
+	
+	public void paint(Graphics2D g2)
+	{
+		g2.setStroke(new BasicStroke(2.0f));
+		g2.setColor(Color.BLACK);
+		g2.draw(this);
+	}
 
-	// Pour descendre
-	public void monte()
+	public void monter()
 	{
 		super.y -= PAS;
 	}

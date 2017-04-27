@@ -35,4 +35,9 @@ public class Vaisseau extends Rectangle2D.Double{
 		g2.draw(this);
 	}
 	
+	public int getLongueur()
+	{
+		return LONGUEUR;
+	}
+	
 }

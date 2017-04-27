@@ -61,6 +61,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		timerRefresh = new Timer(40, new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
+				panneau.listeMissile.monterMissile();
 				repaint();
 			}
 		});
@@ -88,7 +89,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	public void keyPressed(KeyEvent e) 
 	{
 		boolean direction;
-		System.out.println("test");
+		
 		/* je fais différent if pour que si le joueur appuit sur plusieurs touches elles puissent 
 		être toutes testées */
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) // droite
@@ -96,24 +97,24 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			direction = true;
 			panneau.normandy.deplacer(direction);
 		}
+		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
 		{
 			direction = false;
 			panneau.normandy.deplacer(direction);
 		}
 		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche
+		{
+			panneau.listeMissile.creerMissile(panneau.normandy.x);
+		}
+		
 		repaint();
 	}
 
 	public void keyReleased(KeyEvent e) 
-	{	
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) // droite
-		{
-		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
-		{
-		}
-		repaint();
+	{
+		
 	}
 
 	public void keyTyped(KeyEvent e) {

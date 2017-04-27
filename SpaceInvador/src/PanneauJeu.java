@@ -16,7 +16,7 @@ public class PanneauJeu extends JComponent
 	
 	Ligne listeAlien;
 	Vaisseau normandy;
-	Timer timerAlien, timerCreationAlien, timerMissile, timerRefresh;
+	ListeMissile listeMissile;
 	
 	
 	public PanneauJeu()
@@ -27,6 +27,7 @@ public class PanneauJeu extends JComponent
 		setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
 		listeAlien = new Ligne();
 		normandy  = new Vaisseau();
+		listeMissile = new ListeMissile();
 		
 	}
 	
@@ -37,6 +38,7 @@ public class PanneauJeu extends JComponent
 		
 		//listeAlien.paint(g2);
 		normandy.paint(g2);
+		listeMissile.paint(g2);
 	}
 
 	
