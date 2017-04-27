@@ -15,8 +15,8 @@ import javax.swing.Timer;
 public class InterfaceJeu extends JFrame implements ActionListener
 {
 	/* Elements initiaux dont on va avoir besoin*/
-	JButton ajoutJoueur; // Bouton pour ajouter un nouveau joueur qui ne devra pas être tout le temps dispo
-	JLabel pseudo, niveau, score; // Affichage de ces éléments en haut de la page
+	JButton ajoutJoueur; // Bouton pour ajouter un nouveau joueur qui ne devra pas etre tout le temps dispo
+	JLabel pseudo, niveau, score; // Affichage de ces elements en haut de la page
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
@@ -27,7 +27,7 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		super("Super Space Invador");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		/* Création du container qui sera découper en 3 lignes (expliqué plus bas)*/
+		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		c.setLayout(new GridLayout(3,1));
@@ -42,7 +42,6 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		/* Ini du bouton pour un nouveau joueur */
 		ajoutJoueur = new JButton("Ajouter un nouveau joueur");
 		ajoutJoueur.addActionListener(this);
-		c.add(ajoutJoueur,BorderLayout.SOUTH);
 		
 		/* Ini des lignes pour la mise en forme de la page, il y aura 3 lignes : une avec les 
 		 * JLabels, une avec le pnneau de jeu et la dernière avec le classement */
@@ -66,21 +65,27 @@ public class InterfaceJeu extends JFrame implements ActionListener
 		setVisible(true);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
-		 * mettre son pseudo dans le jlabel pseudo*/
-		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
-		{
-			Joueur j = new Joueur();
-			new AjoutJoueur(this,j);
-			data.add(j);
-			pseudo.setText(j.pseudo);
-		}
-	}
+//	public void actionPerformed(ActionEvent e) {
+//		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
+//		 * mettre son pseudo dans le jlabel pseudo*/
+//		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
+//		{
+//			Joueur j = new Joueur();
+//			new AjoutJoueur(this,j);
+//			data.add(j);
+//			pseudo.setText(j.pseudo);
+//		}
+//	}
 	
 	public static void main(String[] args) 
 	{
-		new InterfaceJeu();
+		new AjoutJoueur();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

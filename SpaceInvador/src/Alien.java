@@ -1,3 +1,6 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
@@ -17,7 +20,7 @@ public class Alien extends Ellipse2D.Double
 	}
 	
 	// Pour avoir le rectangle autour du rond
-	public boolean intersect(Alien a)
+	public boolean interect(Alien a)
 	{
 		return intersects(a.getBounds2D());
 	}
@@ -26,6 +29,20 @@ public class Alien extends Ellipse2D.Double
 	public void descendre()
 	{
 		super.y += PAS;
+	}
+	
+	// Score rapporté par la mort de l'alien
+	public int getScore()
+	{
+		return 1;
+	}
+	
+	/* Couleur Alien */
+	public void paint(Graphics2D g2)
+	{
+		g2.setStroke(new BasicStroke(2.0f));
+		g2.setColor(Color.GREEN);
+		g2.draw(this);
 	}
 	
 }

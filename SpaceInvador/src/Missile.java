@@ -4,7 +4,7 @@ import java.util.Random;
 public class Missile extends Ellipse2D.Double
 {
 	
-	private static final int PAS = 3;
+	private static final int PAS = 5;
 	public static final int DIAMETRE = 25;
 	
 	// constructeur
@@ -21,9 +21,9 @@ public class Missile extends Ellipse2D.Double
 	}
 
 	// Pour descendre
-	public void descendre()
+	public void monte()
 	{
-		super.y += PAS;
+		super.y -= PAS;
 	}
 	
 }

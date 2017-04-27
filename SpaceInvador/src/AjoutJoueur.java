@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -13,35 +14,54 @@ import javax.swing.JTextField;
 
 /** Classe qui permet de faire une fenêtre pour ajouter un joueur. Elle est créée de la même façon que 
  * "ajout personne" du TP 5. */
-public class AjoutJoueur extends JDialog implements ActionListener{
+public class AjoutJoueur extends JFrame implements ActionListener{
 	
 	/* Attribut de la classe*/
 	JButton fermer, afficher;
 	JTextField champPseudo;
-	JLabel labelPseudo;
+	JLabel labelPseudo, labelPhrase, labelBienvenue, labelIcone;
 	Joueur j;
+	InterfaceJeu jeu;
+	ImageIcon icone;
 	
-	public AjoutJoueur(JFrame f, Joueur j)
+	public AjoutJoueur()
 	{
-		super(f, "Nouveau joueur", true);
-		this.j=j; // pour "lier" le joueur de l'interface au joueur de l'ajout
+		super("Space Invaders !");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);// pour que si on ferme cette fenêtre on ne quitte pas tout le jeu
 		
-		/* Création du container avec 2 lignes : une pour le champ et le label et 
+		
+		/* Creation du container avec 2 lignes : une pour le champ et le label et 
 		 * l'autre pour les boutons */
 		Container c = getContentPane();
-		c.setLayout(new GridLayout(2,1));
+		c.setLayout(new GridLayout(5,1));
 		
-		/* Création de la ligne qui contiendra les champs du pseudo (un bouton et un jlabel*/
+		/* Creation de la ligne qui contiendra les champs du pseudo (un bouton et un jlabel*/
 		JPanel panelPseudo= new JPanel();
 		panelPseudo.setLayout(new FlowLayout(FlowLayout.LEFT));
 		labelPseudo = new JLabel("Pseudo du joueur :");
 		panelPseudo.add(labelPseudo);
 		champPseudo = new JTextField(20);
 		panelPseudo.add(champPseudo);
-		c.add(panelPseudo);
 		
-		/* Création de la ligne qui contiendra les boutons de la fenêtre (un pour fermer la fenêtre et l'autre
+		/* Creation de la ligne qui contiendra l'image*/
+		JPanel panelIcone = new JPanel();
+		panelIcone.setLayout(new FlowLayout(FlowLayout.CENTER));
+		icone = new ImageIcon("/home/segolene/Images/space_invaders1.png");
+		labelIcone = new JLabel(icone);
+		panelIcone.add(labelIcone);
+		
+		/* Creation des deux lignes qui contiendront un petit message de bienvenue et une phrase.*/
+		JPanel panelBienvenue = new JPanel();
+		panelBienvenue.setLayout(new FlowLayout(FlowLayout.CENTER));
+		labelBienvenue = new JLabel("Bienvenue dans le jeu Space Invadors !");
+		panelBienvenue.add(labelBienvenue);
+		
+		JPanel panelPhrase = new JPanel();
+		panelPhrase.setLayout(new FlowLayout(FlowLayout.CENTER));
+		labelPhrase = new JLabel("Pour jouer, veuillez rentrer votre pseudo si dessous.");
+		panelPhrase.add(labelPhrase);
+		
+		/* Création de la ligne qui contiendra les boutons de la fenetre (un pour fermer la fenêtre et l'autre
 		 * pour ajouter un joueur
 		 */
 		JPanel panelBoutons = new JPanel();
@@ -52,8 +72,16 @@ public class AjoutJoueur extends JDialog implements ActionListener{
 		afficher = new JButton("Ajouter");
 		afficher.addActionListener(this);
 		panelBoutons.add(afficher);
+		
+		c.add(panelIcone);
+		c.add(panelBienvenue);
+		c.add(panelPhrase);
+		c.add(panelPseudo);
 		c.add(panelBoutons);
-				
+		
+		jeu = new InterfaceJeu();
+		j = new Joueur();
+		
 		pack();
 		setVisible(true);
 	}
@@ -69,6 +97,8 @@ public class AjoutJoueur extends JDialog implements ActionListener{
 		{
 			j.pseudo = champPseudo.getText();
 			j.score = 0;
+			jeu.pseudo.setText(j.pseudo);
+			jeu.score.setText("0");
 			this.dispose();
 			
 		}
