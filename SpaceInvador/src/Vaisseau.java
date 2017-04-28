@@ -14,9 +14,9 @@ public class Vaisseau extends Rectangle2D.Double{
 	//Constructeur
 	public Vaisseau()
 	{
-		super(450, 0, LONGUEUR, HAUTEUR);
+		super(450, 500, LONGUEUR, HAUTEUR);
 		x = 450;
-		y = 0;
+		y = 500;
 	}
 	
 	public void deplacer(boolean b)

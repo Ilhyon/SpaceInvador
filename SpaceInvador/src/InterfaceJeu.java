@@ -32,7 +32,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
-		c.setLayout(new GridLayout(3,1));
+//		c.setLayout(new GridLayout(3,1));
 		
 		data = new Vector<Joueur>();
 		
@@ -48,15 +48,13 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		panelAffichage.add(pseudo);
 		panelAffichage.add(niveau);
 		panelAffichage.add(score);
-		JPanel panelPanneau = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		panneau = new PanneauJeu();
-		panelPanneau.add(panneau);
 		JPanel panelClassement = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		classement = new Classement();
 		//panelClassement.add(classement);
-		c.add(panelAffichage);
-		c.add(panelPanneau);
-		c.add(panelClassement);
+		c.add(panelAffichage,BorderLayout.NORTH);
+		c.add(panneau,BorderLayout.CENTER);
+		c.add(panelClassement,BorderLayout.SOUTH);
 		
 		timerRefresh = new Timer(40, new ActionListener()
 		{

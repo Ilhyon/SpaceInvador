@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -35,7 +36,8 @@ public class PanneauJeu extends JComponent
 	{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		
+		g2.setColor(Color.RED);
+		g2.fillRect(0, 0, LARGEUR, HAUTEUR);
 		//listeAlien.paint(g2);
 		normandy.paint(g2);
 		listeMissile.paint(g2);
