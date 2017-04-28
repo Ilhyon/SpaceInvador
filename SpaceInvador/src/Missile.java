@@ -11,10 +11,9 @@ public class Missile extends Ellipse2D.Double
 	public static final int DIAMETRE = 25;
 	
 	// constructeur
-	public Missile(int centreX, int centreY)
+	public Missile(double centreX, double centreY)
 	{
 		super(centreX-DIAMETRE/2, centreY-DIAMETRE/2, DIAMETRE, DIAMETRE);
-		Random r = new Random();
 	}
 	
 	// Pour avoir le rectangle autour du rond
@@ -26,7 +25,7 @@ public class Missile extends Ellipse2D.Double
 	public void paint(Graphics2D g2)
 	{
 		g2.setStroke(new BasicStroke(2.0f));
-		g2.setColor(Color.BLACK);
+		g2.setColor(Color.YELLOW);
 		g2.draw(this);
 	}
 

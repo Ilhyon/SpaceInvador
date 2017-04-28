@@ -1,14 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import java.util.Vector;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,7 +55,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		c.add(panneau,BorderLayout.CENTER);
 		c.add(panelClassement,BorderLayout.SOUTH);
 		
-		timerRefresh = new Timer(40, new ActionListener()
+		timerRefresh = new Timer(30, new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();

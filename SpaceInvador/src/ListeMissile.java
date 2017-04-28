@@ -11,8 +11,9 @@ public class ListeMissile {
 	
 	public void creerMissile(int longueur, Vaisseau v)
 	{
-		int x = v.getLongueur()/2;
-		Missile m = new Missile(x, Missile.DIAMETRE/2);
+		double x = v.getX() + v.getWidth()/2;
+		double y = v.getY();
+		Missile m = new Missile(x, y);
 //		while(intersect(b))
 //		{
 //			x = Bulle.DIAMETRE/2 + r.nextInt(longueur-Bulle.DIAMETRE);
