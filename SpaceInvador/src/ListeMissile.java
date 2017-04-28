@@ -9,10 +9,9 @@ public class ListeMissile {
 		listeMissilesAffiches = new ArrayList<Missile>();
 	}
 	
-	public void creerMissile(int longueur)
+	public void creerMissile(int longueur, Vaisseau v)
 	{
-		Vaisseau test = new Vaisseau();
-		int x = test.getLongueur()/2;
+		int x = v.getLongueur()/2;
 		Missile m = new Missile(x, Missile.DIAMETRE/2);
 //		while(intersect(b))
 //		{

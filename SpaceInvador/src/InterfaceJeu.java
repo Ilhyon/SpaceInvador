@@ -106,7 +106,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche
 		{
-			panneau.listeMissile.creerMissile(panneau.normandy.x);
+			panneau.listeMissile.creerMissile(panneau.normandy.x, panneau.normandy);
 		}
 		
 		repaint();
