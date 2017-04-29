@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +28,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	{
 		super("Super Space Invador");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
