@@ -3,7 +3,6 @@ import java.util.*;
 
 public class ListeMissile {
 	ArrayList<Missile> listeMissilesAffiches;
-	//Missile m;
 	
 	public ListeMissile()
 	{
@@ -25,22 +24,9 @@ public class ListeMissile {
 	
 	public void monterMissile()
 	{
-		Iterator<Missile> iterMissile = listeMissilesAffiches.iterator();
-		while(iterMissile.hasNext())
-		{
-			// A MODIFIER : c'est presque ça mais pas tout à fait !
-			//Missile m = (Missile) iterMissile.iterator();
-			iterMissile.next().monter();
-			// Si les missiles sortent de l'écran alors on les supprime
-//			if(m.getY() < 0) 
-//			{
-//				listeMissilesAffiches.remove(m);
-//				System.out.println("supp");
-//				
-//			}
-		}
-			
-			
+		Iterator<Missile> enumBulle = listeMissilesAffiches.iterator();
+		while(enumBulle.hasNext())
+			enumBulle.next().monter();
 	}
 	
 	public void paint(Graphics2D g2)
