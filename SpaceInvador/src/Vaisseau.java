@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Vaisseau extends Rectangle2D.Double{
 	
-	private static final int LONGUEUR = 50;
+	private static final int LONGUEUR = 100;
 	private static final int HAUTEUR = 25;
 	int x,y;
 	
@@ -31,7 +31,6 @@ public class Vaisseau extends Rectangle2D.Double{
 	
 	public void paint(Graphics2D g2)
 	{
-		//Color darkBlue  = new Color(77,176,230); 
 		g2.setStroke(new BasicStroke(2.0f));
 		g2.setColor(Color.CYAN);
 		g2.draw(this);
