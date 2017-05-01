@@ -41,6 +41,7 @@ public class PanneauJeu extends JComponent
 		//listeAlien.paint(g2);
 		normandy.paint(g2);
 		listeMissile.paint(g2);
+		listeAlien.paint(g2);
 	}
 
 	

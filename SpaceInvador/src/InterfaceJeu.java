@@ -20,7 +20,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
-	Timer timerRefresh;
+	Timer timerRefresh, timerSpawnAlien;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -59,16 +59,45 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
+				panneau.listeAlien.descendreAliens();
 				repaint();
 			}
 		});
 		
+		timerSpawnAlien = new Timer(1000, new ActionListener() 		
+		{ 			
+			public void actionPerformed(ActionEvent e) 
+			{ 				
+				creationAlien();
+				repaint(); 			
+			} 		
+		});
+		
+		timerSpawnAlien.start();
 		timerRefresh.start();
 		addKeyListener(this);
 		
 		
 		pack();
 		setVisible(true);
+	}
+	
+	public void creationAlien()
+	{
+		int nb = 5;
+//		if(data.score>0)
+//		{
+//			nb = 5;
+//		}
+//		else if(score > 3)
+//		{
+//			nb = 7;
+//		}
+		
+		for(int i = 0; i <= nb; i++)
+		{
+			panneau.listeAlien.creerAlien(panneau.LARGEUR);
+		}
 	}
 	
 //	public void actionPerformed(ActionEvent e) {

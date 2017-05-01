@@ -17,8 +17,10 @@ public class Ligne {
 	{
 		
 		Random rAlien = new Random();
-		int x = Alien.DIAMETRE/2 + rAlien.nextInt(longueur-Alien.DIAMETRE);
-		Alien a = new Alien(x, Alien.DIAMETRE/2);
+		int x = 0 + rAlien.nextInt(10 - 0);
+		x = x*100;
+		Alien a = new Alien(x);
+		listeAlien.add(a);
 	}
 	
 	public boolean intersect(Alien a)
@@ -58,7 +60,7 @@ public class Ligne {
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().getY()+Alien.DIAMETRE>hauteur)
+			if(iterAlien.next().getY()+Alien.COTE>hauteur)
 				return true;
 		return false;
 	}

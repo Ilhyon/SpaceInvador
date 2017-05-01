@@ -97,6 +97,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		{
 			j.pseudo = champPseudo.getText();
 			j.score = 0;
+			jeu.data.add(j);
 			jeu.pseudo.setText(j.pseudo);
 			jeu.score.setText("0");
 			this.dispose();
