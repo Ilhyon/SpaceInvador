@@ -2,21 +2,22 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-public class Alien extends Ellipse2D.Double
+public class Alien extends Rectangle2D.Double
 {
 	
 	private static final int PAS = 2;
-	public static final int DIAMETRE = 50;
+	public static final int COTE = 50;
 	int solidite;
 	
 	// constructeur
-	public Alien(int centreX, int centreY)
+	public Alien(int centreX)
 	{
-		super(centreX-DIAMETRE/2, centreY-DIAMETRE/2, DIAMETRE, DIAMETRE);
-		Random r = new Random();
-		solidite = 1+r.nextInt(5);
+		super(centreX, 0, COTE, COTE);
+//		Random r = new Random();
+//		solidite = 1+r.nextInt(5);
 	}
 	
 	// Pour avoir le rectangle autour du rond

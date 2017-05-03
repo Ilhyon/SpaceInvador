@@ -2,15 +2,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class PanneauJeu extends JComponent 
@@ -41,10 +38,14 @@ public class PanneauJeu extends JComponent
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, LARGEUR, HAUTEUR);
-		listeAlien.paint(g2);
+		//listeAlien.paint(g2);
 		normandy.paint(g2);
 		listeMissile.paint(g2);
+		listeAlien.paint(g2);
 	}
 
-	
+	public int getHauteur()
+	{
+		return HAUTEUR;
+	}
 }

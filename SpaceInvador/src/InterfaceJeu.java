@@ -8,9 +8,9 @@ import java.awt.event.KeyListener;
 
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,15 +21,13 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
-	Timer timerRefresh;
+	Timer timerRefresh, timerSpawnAlien;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
 	{
 		super("Super Space Invador");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
@@ -62,16 +60,52 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
+				panneau.listeAlien.descendreAliens();
+				
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
+				{
+					JOptionPane.showMessageDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.INFORMATION_MESSAGE);
+					timerRefresh.stop();
+					timerSpawnAlien.stop();
+				}
+				
+				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
 			}
+		});
+		
+		timerSpawnAlien = new Timer(1000, new ActionListener() 		
+		{ 			
+			public void actionPerformed(ActionEvent e) 
+			{ 				
+				creationAlien();
+				repaint(); 			
+			} 		
 		});
 		
 		timerRefresh.start();
 		addKeyListener(this);
 		
-		
 		pack();
 		setVisible(true);
+	}
+	
+	public void creationAlien()
+	{
+		int nb = 5;
+//		if(data.score>0)
+//		{
+//			nb = 5;
+//		}
+//		else if(score > 3)
+//		{
+//			nb = 7;
+//		}
+		
+		for(int i = 0; i <= nb; i++)
+		{
+			panneau.listeAlien.creerAlien(panneau.LARGEUR);
+		}
 	}
 	
 //	public void actionPerformed(ActionEvent e) {
