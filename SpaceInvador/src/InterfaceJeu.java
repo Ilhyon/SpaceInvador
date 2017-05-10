@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -60,6 +61,15 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
+				
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
+				{
+					JOptionPane.showMessageDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.INFORMATION_MESSAGE);
+					timerRefresh.stop();
+					timerSpawnAlien.stop();
+				}
+				
+				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
 			}
 		});
@@ -73,10 +83,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			} 		
 		});
 		
-		timerSpawnAlien.start();
 		timerRefresh.start();
 		addKeyListener(this);
-		
 		
 		pack();
 		setVisible(true);

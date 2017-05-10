@@ -35,7 +35,7 @@ public class Ligne {
 	public void supprimerAlien(Alien a)
 	{
 		listeAlien.remove(a);
-		//listeAlien.add(a);
+		System.out.println("remove alien");
 	}
 	
 	public void descendreAliens()

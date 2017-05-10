@@ -29,6 +29,30 @@ public class ListeMissile {
 			enumBulle.next().monter();
 	}
 	
+	public void intersectWithAlien(Ligne l)
+	{
+		ListIterator<Alien> iterAlien = l.listeAlien.listIterator();
+		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
+		Alien a = new Alien();
+		Missile m = new Missile();
+		while(iterMissile.hasNext())
+			m = iterMissile.next();
+			while(iterAlien.hasNext())
+				a = iterAlien.next();
+				if(m.intersect(a))
+				{
+					l.supprimerAlien(a);
+					suprimerMissile(m);
+					System.out.println("rencontre du troisième genre");
+				}
+	}
+	
+	public void suprimerMissile(Missile m)
+	{
+		listeMissilesAffiches.remove(m);
+		System.out.println("remove missile");
+	}
+	
 	public void paint(Graphics2D g2)
 	{
 		Iterator<Missile> enumBulle = listeMissilesAffiches.iterator();

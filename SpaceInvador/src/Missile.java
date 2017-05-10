@@ -8,7 +8,7 @@ public class Missile extends Ellipse2D.Double
 {
 	
 	private static final int PAS = 5;
-	public static final int DIAMETRE = 25;
+	public static final int DIAMETRE = 10;
 	
 	// constructeur
 	public Missile(double centreX, double centreY)
@@ -16,10 +16,16 @@ public class Missile extends Ellipse2D.Double
 		super(centreX-DIAMETRE/2, centreY-DIAMETRE/2, DIAMETRE, DIAMETRE);
 	}
 	
-	// Pour avoir le rectangle autour du rond
-	public boolean intersect(Missile m)
+	public Missile()
 	{
-		return intersects(m.getBounds2D());
+		super();
+	}
+	
+	// Pour avoir le rectangle autour du rond
+	public boolean intersect(Alien a)
+	{
+		System.out.println(a.getBounds2D());
+		return intersects(a.getBounds2D());
 	}
 	
 	public void paint(Graphics2D g2)

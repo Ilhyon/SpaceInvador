@@ -44,5 +44,8 @@ public class PanneauJeu extends JComponent
 		listeAlien.paint(g2);
 	}
 
-	
+	public int getHauteur()
+	{
+		return HAUTEUR;
+	}
 }
