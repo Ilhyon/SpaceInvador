@@ -61,15 +61,16 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
+				panneau.normandy.testerBords();
 				
-				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
 					JOptionPane.showMessageDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.INFORMATION_MESSAGE);
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
 				}
 				
-				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
+				//panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
 			}
 		});
@@ -130,12 +131,16 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{
 			direction = true;
 			panneau.normandy.deplacer(direction);
+			panneau.normandy.testerBords();
+			System.out.println(panneau.normandy.x);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
 		{
 			direction = false;
 			panneau.normandy.deplacer(direction);
+			panneau.normandy.testerBords();
+			System.out.println(panneau.normandy.x);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche

@@ -24,7 +24,7 @@ public class Missile extends Ellipse2D.Double
 	// Pour avoir le rectangle autour du rond
 	public boolean intersect(Alien a)
 	{
-		System.out.println(a.getBounds2D());
+		//System.out.println(a.getBounds2D());
 		return intersects(a.getBounds2D());
 	}
 	
