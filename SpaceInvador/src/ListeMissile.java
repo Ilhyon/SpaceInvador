@@ -30,10 +30,12 @@ public class ListeMissile {
 		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
 		Alien a = new Alien();
 		Missile m = new Missile();
-		boolean sup = false; // si on suprime un alien et un missile on arrete lse boucles parce que les tailels change et ça plante
+		boolean sup = false; // si on suprime un alien et un missile on arrete lse boucles parce que les tailles change et ça plante
+		// pour chaque missile on va tester si ils sont dans un alien
 		while(iterMissile.hasNext() && sup == false)
 		{
 			m = iterMissile.next();
+			// parcours des differents aliens
 			while(iterAlien.hasNext() && sup == false)
 			{
 				a = iterAlien.next();

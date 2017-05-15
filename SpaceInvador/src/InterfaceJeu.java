@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.Timer;
 
@@ -23,7 +24,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
-	
+	JTabbedPane onglets;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -55,8 +56,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		classement = new Classement();
 		//panelClassement.add(classement);
 		c.add(panelAffichage,BorderLayout.NORTH);
-		c.add(panneau,BorderLayout.CENTER);
-		c.add(panelClassement,BorderLayout.SOUTH);
+		
+		onglets = new JTabbedPane();
+		onglets.add("Jeu", panneau);
+		onglets.add("Classement", panelClassement);
+		c.add(onglets);
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
