@@ -28,6 +28,11 @@ public class Missile extends Ellipse2D.Double
 		return intersects(a.getBounds2D());
 	}
 	
+	public boolean interect(Missile m)
+	{
+		return intersects(m.getBounds2D());
+	}
+	
 	public void paint(Graphics2D g2)
 	{
 		g2.setStroke(new BasicStroke(2.0f));

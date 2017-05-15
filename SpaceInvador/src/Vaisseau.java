@@ -8,27 +8,22 @@ public class Vaisseau extends Rectangle2D.Double{
 	
 	private static final int LONGUEUR = 50;
 	private static final int HAUTEUR = 25;
-	int x,y;
 	
 	
 	//Constructeur
 	public Vaisseau()
 	{
 		super(450, 850, LONGUEUR, HAUTEUR);
-		x = 450;
-		y = 850;
 	}
 	
 	
 	public void deplacer(boolean b)
 	{
 		if(b == true){
-			super.x += LONGUEUR/2; // vers la droite
-			x += LONGUEUR/2;
+			x += LONGUEUR/2; // vers la droite
 		}
 		else
 		{
-			super.x -= LONGUEUR/2;
 			x -= LONGUEUR/2;
 		} // vers la gauche
 		
@@ -47,12 +42,10 @@ public class Vaisseau extends Rectangle2D.Double{
 	{
 		if(x >= 950)
 		{
-			super.x = 950;
 			x = 950;
 		}
 		else if(x <= 0)
 		{
-			super.x = 0;
 			x = 0;
 		}
 	}

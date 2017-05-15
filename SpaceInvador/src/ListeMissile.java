@@ -9,16 +9,11 @@ public class ListeMissile {
 		listeMissilesAffiches = new ArrayList<Missile>();
 	}
 	
-	public void creerMissile(int longueur, Vaisseau v)
+	public void creerMissile(double longueur, Vaisseau v)
 	{
 		double x = v.getX() + v.getWidth()/2;
 		double y = v.getY();
 		Missile m = new Missile(x, y);
-//		while(intersect(b))
-//		{
-//			x = Bulle.DIAMETRE/2 + r.nextInt(longueur-Bulle.DIAMETRE);
-//			b = new Bulle(x, Bulle.DIAMETRE/2,l);
-//		}
 		listeMissilesAffiches.add(m);
 	}
 	
@@ -35,22 +30,36 @@ public class ListeMissile {
 		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
 		Alien a = new Alien();
 		Missile m = new Missile();
-		while(iterMissile.hasNext())
+		boolean sup = false; // si on suprime un alien et un missile on arrete lse boucles parce que les tailels change et ça plante
+		while(iterMissile.hasNext() && sup == false)
+		{
 			m = iterMissile.next();
-			while(iterAlien.hasNext())
+			while(iterAlien.hasNext() && sup == false)
+			{
 				a = iterAlien.next();
+				System.out.println(a.getBounds2D());
 				if(m.intersect(a))
 				{
 					l.supprimerAlien(a);
 					suprimerMissile(m);
-					System.out.println("rencontre du troisième genre");
+					sup = true;
 				}
+			}
+		}
+	}
+	
+	public boolean intersect(Missile m)
+	{
+		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
+		while(iterMissile.hasNext())
+			if(iterMissile.next().interect(m))
+				return true;
+		return false;
 	}
 	
 	public void suprimerMissile(Missile m)
 	{
 		listeMissilesAffiches.remove(m);
-		System.out.println("remove missile");
 	}
 	
 	public void paint(Graphics2D g2)

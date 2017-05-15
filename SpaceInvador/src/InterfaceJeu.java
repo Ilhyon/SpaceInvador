@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.Timer;
 
 public class InterfaceJeu extends JFrame implements KeyListener
@@ -22,6 +23,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
+	
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -70,7 +72,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 					timerSpawnAlien.stop();
 				}
 				
-				//panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
+				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
 			}
 		});
@@ -93,15 +95,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void creationAlien()
 	{
-		int nb = 5;
-//		if(data.score>0)
-//		{
-//			nb = 5;
-//		}
-//		else if(score > 3)
-//		{
-//			nb = 7;
-//		}
+		int nb = 1;
 		
 		for(int i = 0; i <= nb; i++)
 		{
@@ -132,7 +126,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			direction = true;
 			panneau.normandy.deplacer(direction);
 			panneau.normandy.testerBords();
-			System.out.println(panneau.normandy.x);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
@@ -140,7 +133,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			direction = false;
 			panneau.normandy.deplacer(direction);
 			panneau.normandy.testerBords();
-			System.out.println(panneau.normandy.x);
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche
