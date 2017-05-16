@@ -5,11 +5,11 @@ import java.util.ListIterator;
 import javax.swing.table.AbstractTableModel;
 
 public class Classement extends AbstractTableModel{
-	ArrayList<Joueur> listeJoueur;
+	ListeJoueur l;
 
-	public Classement()
+	public Classement(ListeJoueur l)
 	{
-		listeJoueur = new ArrayList<Joueur>();
+		this.l = l;
 	}
 	
 	public int getColumnCount() {
@@ -17,7 +17,7 @@ public class Classement extends AbstractTableModel{
 	}
 
 	public int getRowCount() {
-		return listeJoueur.size();
+		return l.listeJoueur.size();
 	}
 	
 	public String getColumnName(int idC)
@@ -35,7 +35,7 @@ public class Classement extends AbstractTableModel{
 	
 	public Object getValueAt(int idL, int idC) 
 	{
-		ListIterator<Joueur> iterJoueur = listeJoueur.listIterator();
+		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
 		String car = null;
 		int score = 0;
 		Joueur j = new Joueur();

@@ -9,7 +9,7 @@ public class Alien extends Rectangle2D.Double
 {
 	
 	private static final int PAS = 2;
-	public static final int COTE = 50;
+	public static final int COTE = 40;
 	int solidite;
 	
 	// constructeur

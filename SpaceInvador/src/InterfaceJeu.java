@@ -27,8 +27,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
-//	JTabbedPane onglets;
-	JMenuBar barre;
 	int okButton;
 	
 	/* Constructeur*/
@@ -57,27 +55,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		panelAffichage.add(niveau);
 		panelAffichage.add(score);
 		panneau = new PanneauJeu();
-		JPanel panelClassement = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		classement = new Classement();
-//		panelClassement.add(classement);
 		c.add(panelAffichage,BorderLayout.NORTH);
-
-		barre = new JMenuBar();
 		
-		JMenuItem menuC = new JMenuItem("Classement");
-		menuC.setActionCommand("Classement");
-//		menuC.addActionListener(this);
-		barre.add(menuC);
-		
-		setJMenuBar(barre);
+		okButton = 1;
 		
 		c.add(panneau);
-		
-//		
-//		onglets = new JTabbedPane();
-//		onglets.add("Jeu", panneau);
-//		onglets.add("Classement", panelClassement);
-//		c.add(onglets);
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
@@ -93,12 +75,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
 					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
-					System.out.println(okButton);
 				}
-				if(okButton == 1)
-				{
-				    new InterfaceClassement();
-				}
+//				if(okButton == 0)
+//				{
+//				    new InterfaceClassement();
+//				}
 				
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);

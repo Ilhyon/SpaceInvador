@@ -10,18 +10,20 @@ import javax.swing.JTabbedPane;
 
 public class InterfaceClassement extends JFrame implements ActionListener
 {
-
+	Classement classement;
 	JTabbedPane tableClassement;
 	
-	public InterfaceClassement() {
+	public InterfaceClassement(ListeJoueur j) {
 		super("Classement");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 		
+		//classement = new Classement();
+		
 		tableClassement = new JTabbedPane();
-		c.add(new JScrollPane(tableClassement));
+		c.add(tableClassement);
 		
 		pack();
 		setVisible(true);

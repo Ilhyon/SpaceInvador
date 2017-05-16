@@ -8,7 +8,7 @@ public class Missile extends Ellipse2D.Double
 {
 	
 	private static final int PAS = 5;
-	public static final int DIAMETRE = 25;
+	public static final int DIAMETRE = 10;
 	
 	// constructeur
 	public Missile(double centreX, double centreY)

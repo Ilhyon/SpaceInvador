@@ -3,6 +3,7 @@ import java.util.*;
 
 public class ListeMissile {
 	ArrayList<Missile> listeMissilesAffiches;
+	int score;
 	
 	public ListeMissile()
 	{
@@ -45,6 +46,7 @@ public class ListeMissile {
 				{
 					l.supprimerAlien(a);
 					suprimerMissile(m);
+					score += 1;
 					sup = true;
 				}
 			}

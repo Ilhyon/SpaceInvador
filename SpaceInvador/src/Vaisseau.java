@@ -13,7 +13,7 @@ public class Vaisseau extends Rectangle2D.Double{
 	//Constructeur
 	public Vaisseau()
 	{
-		super((PanneauJeu.LARGEUR/2) - 50, PanneauJeu.HAUTEUR - 200, LONGUEUR, HAUTEUR);
+		super((PanneauJeu.LARGEUR/2) - 50, PanneauJeu.HAUTEUR - 50, LONGUEUR, HAUTEUR);
 	}
 	
 	

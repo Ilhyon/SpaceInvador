@@ -18,7 +18,7 @@ public class Ligne {
 		
 		Random rAlien = new Random();
 		int x = 0 + rAlien.nextInt(10 - 0);
-		x = x*100;
+		x = x*50;
 		Alien a = new Alien(x);
 		listeAlien.add(a);
 	}
