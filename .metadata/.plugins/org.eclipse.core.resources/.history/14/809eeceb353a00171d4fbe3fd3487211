@@ -27,7 +27,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
-	int okButton, cptLevel, level;
+	int okButton, cptLevel;
 	ListeJoueur l;
 	
 	/* Constructeur*/
@@ -36,7 +36,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		super("Super Space Invaders");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		cptLevel = 0;
-		level = 0;
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
@@ -101,12 +100,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				{
 					cptLevel += 1;
 				}
-				else
-				{ 
-					level += 1;
-					cptLevel = 0;
-					niveau.setText("Niveau : " + level);
-				}
+				else{ cptLevel = 0;}
 			} 		
 		});
 		
