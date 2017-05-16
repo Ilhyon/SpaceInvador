@@ -10,8 +10,13 @@ import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.Timer;
 
 public class InterfaceJeu extends JFrame implements KeyListener
@@ -22,11 +27,14 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	PanneauJeu panneau; // Panneau du jeu
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
+//	JTabbedPane onglets;
+	JMenuBar barre;
+	int okButton;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
 	{
-		super("Super Space Invador");
+		super("Super Space Invaders");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
@@ -51,10 +59,25 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		panneau = new PanneauJeu();
 		JPanel panelClassement = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		classement = new Classement();
-		//panelClassement.add(classement);
+//		panelClassement.add(classement);
 		c.add(panelAffichage,BorderLayout.NORTH);
-		c.add(panneau,BorderLayout.CENTER);
-		c.add(panelClassement,BorderLayout.SOUTH);
+
+		barre = new JMenuBar();
+		
+		JMenuItem menuC = new JMenuItem("Classement");
+		menuC.setActionCommand("Classement");
+//		menuC.addActionListener(this);
+		barre.add(menuC);
+		
+		setJMenuBar(barre);
+		
+		c.add(panneau);
+		
+//		
+//		onglets = new JTabbedPane();
+//		onglets.add("Jeu", panneau);
+//		onglets.add("Classement", panelClassement);
+//		c.add(onglets);
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
@@ -63,11 +86,20 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				panneau.listeAlien.descendreAliens();
 				
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
+				panneau.normandy.testerBords();
+				
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
-					JOptionPane.showMessageDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.INFORMATION_MESSAGE);
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
+					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+					System.out.println(okButton);
 				}
+				if(okButton == 1)
+				{
+				    new InterfaceClassement();
+				}
+				
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
@@ -92,7 +124,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void creationAlien()
 	{
-		int nb = 5;
+//		int nb = 5;
 //		if(data.score>0)
 //		{
 //			nb = 5;
@@ -101,6 +133,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 //		{
 //			nb = 7;
 //		}
+		int nb = 1;
 		
 		for(int i = 0; i <= nb; i++)
 		{
@@ -108,7 +141,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		}
 	}
 	
-//	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 //		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
 //		 * mettre son pseudo dans le jlabel pseudo*/
 //		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
@@ -118,7 +151,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 //			data.add(j);
 //			pseudo.setText(j.pseudo);
 //		}
-//	}
+			
+	}
 	
 	public void keyPressed(KeyEvent e) 
 	{
@@ -130,12 +164,14 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{
 			direction = true;
 			panneau.normandy.deplacer(direction);
+			panneau.normandy.testerBords();
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) // gauche
 		{
 			direction = false;
 			panneau.normandy.deplacer(direction);
+			panneau.normandy.testerBords();
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche

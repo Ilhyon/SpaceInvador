@@ -27,7 +27,7 @@ public class Ligne {
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().interect(a))
+			if(iterAlien.next().intersectAA(a))
 				return true;
 		return false;
 	}
@@ -45,22 +45,22 @@ public class Ligne {
 			iterAlien.next().descendre();
 	}
 	
-	public boolean testerLettre(Alien a)
-	{
-		if(listeAlien.contains(a))
-		{
-			supprimerAlien(a);
-			return true;
-		}
-		return false;
-	}
+//	public boolean testerAlien(Alien a)
+//	{
+//		if(listeAlien.contains(a))
+//		{
+//			supprimerAlien(a);
+//			return true;
+//		}
+//		return false;
+//	}
 
 	
 	public boolean testerPlancher(int hauteur)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().getY()+Alien.COTE>hauteur)
+			if(iterAlien.next().getY()+Alien.COTE > hauteur)
 				return true;
 		return false;
 	}

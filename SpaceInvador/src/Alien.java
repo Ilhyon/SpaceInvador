@@ -20,11 +20,17 @@ public class Alien extends Rectangle2D.Double
 //		solidite = 1+r.nextInt(5);
 	}
 	
+	public Alien()
+	{
+		super();
+	}
+	
 	// Pour avoir le rectangle autour du rond
-	public boolean interect(Alien a)
+	public boolean intersectAA(Alien a)
 	{
 		return intersects(a.getBounds2D());
 	}
+	
 
 	// Pour descendre
 	public void descendre()
