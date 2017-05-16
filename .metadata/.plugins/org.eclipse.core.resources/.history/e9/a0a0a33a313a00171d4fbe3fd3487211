@@ -80,7 +80,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				}
 				if(okButton == 0)
 				{
-				    new InterfaceClassement(InterfaceJeu.this);
+				    new InterfaceClassement(l);
 				}
 				
 				

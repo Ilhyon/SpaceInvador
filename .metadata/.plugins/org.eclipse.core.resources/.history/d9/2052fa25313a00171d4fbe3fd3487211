@@ -78,10 +78,10 @@ public class InterfaceJeu extends JFrame implements KeyListener
 					timerSpawnAlien.stop();
 					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				}
-				if(okButton == 0)
-				{
-				    new InterfaceClassement(InterfaceJeu.this);
-				}
+//				if(okButton == 0)
+//				{
+//				    new InterfaceClassement();
+//				}
 				
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);

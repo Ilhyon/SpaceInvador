@@ -23,6 +23,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 	Joueur j;
 	InterfaceJeu jeu;
 	ImageIcon icone;
+	ListeJoueur l;
 	
 	public AjoutJoueur()
 	{
@@ -81,6 +82,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		
 		jeu = new InterfaceJeu();
 		j = new Joueur();
+		l = new ListeJoueur();
 		
 		pack();
 		setVisible(true);
@@ -103,7 +105,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 			jeu.pseudo.setText(j.pseudo);
 			jeu.score.setText("0");
 			jeu.timerSpawnAlien.start();
-			jeu.l.listeJoueur.add(j);
+			l.listeJoueur.add(j);
 			this.dispose();
 			
 		}

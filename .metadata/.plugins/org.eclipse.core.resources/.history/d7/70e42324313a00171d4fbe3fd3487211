@@ -7,12 +7,11 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 
 public class InterfaceClassement extends JFrame implements ActionListener
 {
 	Classement classement;
-	JTable tableClassement;
+	JTabbedPane tableClassement;
 	
 	public InterfaceClassement(InterfaceJeu jeu) {
 		super("Classement");
@@ -22,7 +21,8 @@ public class InterfaceClassement extends JFrame implements ActionListener
 		c.setLayout(new BorderLayout());
 		
 		classement = new Classement(jeu.l);
-		tableClassement = new JTable(classement);
+		
+		tableClassement = new JTabbedPane();
 		c.add(tableClassement);
 		
 		pack();

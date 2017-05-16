@@ -28,7 +28,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
 	int okButton;
-	ListeJoueur l;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -58,7 +57,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		panneau = new PanneauJeu();
 		c.add(panelAffichage,BorderLayout.NORTH);
 		
-		l = new ListeJoueur();
 		okButton = 1;
 		
 		c.add(panneau);
@@ -78,10 +76,10 @@ public class InterfaceJeu extends JFrame implements KeyListener
 					timerSpawnAlien.stop();
 					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				}
-				if(okButton == 0)
-				{
-				    new InterfaceClassement(InterfaceJeu.this);
-				}
+//				if(okButton == 0)
+//				{
+//				    new InterfaceClassement();
+//				}
 				
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
