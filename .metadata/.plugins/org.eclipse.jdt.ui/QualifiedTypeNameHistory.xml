@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="PanneauJeu"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
-<fullyQualifiedTypeName name="javax.swing.JMenu"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+<fullyQualifiedTypeName name="PanneauJeu"/>
+<fullyQualifiedTypeName name="javax.swing.JMenu"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="InterfaceClassement"/>
+<fullyQualifiedTypeName name="Classement"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="javax.swing.JList"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Joueur"/>
+<fullyQualifiedTypeName name="ListeJoueur"/>
+<fullyQualifiedTypeName name="javax.swing.JTable"/>
+<fullyQualifiedTypeName name="InterfaceJeu"/>
 </qualifiedTypeNameHistroy>

@@ -20,7 +20,6 @@ public class ListeMissile {
 			x = v.getX() + v.getWidth()/2;
 			y = v.getY();
 			m = new Missile(x, y);
-			// pour supprimer le dernier élément de la liste
 			listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
 		}
 		

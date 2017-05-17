@@ -15,16 +15,15 @@ public class ListeMissile {
 		double x = v.getX() + v.getWidth()/2;
 		double y = v.getY();
 		Missile m = new Missile(x, y);
+		
 		while(intersect(m))
 		{
 			x = v.getX() + v.getWidth()/2;
 			y = v.getY();
 			m = new Missile(x, y);
-			// pour supprimer le dernier élément de la liste
-			listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
 		}
 		
-		listeMissilesAffiches.add(m);
+		listeMissilesAffiches.put(m);
 	}
 	
 	public void monterMissile()
