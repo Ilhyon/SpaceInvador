@@ -56,11 +56,11 @@ public class Ligne {
 //	}
 
 	
-	public boolean testerPlancher(int hauteur)
+	public boolean testerPlancher(double hauteur)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().getY()+Alien.COTE > hauteur)
+			if(iterAlien.next().getY() + Alien.COTE > hauteur)
 				return true;
 		return false;
 	}

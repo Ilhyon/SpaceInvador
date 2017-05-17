@@ -26,8 +26,10 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Timer timerRefresh, timerSpawnAlien;
+	Classement classement;
 	int okButton, cptLevel, level, point;
 	ListeJoueur l;
+	Missile m;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -37,6 +39,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		cptLevel = 0;
 		level = 0;
 		point = 0;
+		classement = new Classement(l);
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
@@ -67,12 +70,20 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
 				
-				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
-				panneau.normandy.testerBords();
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur() - 200))
+					panneau.normandy.testerBords();
+				
+				// Pour supprimer missile sortant du panneau de jeu
+//				if(panneau.listeMissile.testerPlafond(panneau.getHauteur()))
+//				{
+//					System.out.println("supp-missile");
+//					panneau.listeMissile.supprimerMissile(panneau.listeMissile.m);
+//				}
 				
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{

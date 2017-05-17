@@ -6,6 +6,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class Classement extends AbstractTableModel{
 	ListeJoueur l;
+	Joueur j;
 
 	public Classement(ListeJoueur l)
 	{
@@ -37,14 +38,13 @@ public class Classement extends AbstractTableModel{
 	{
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
 		String pseudo = null;
+		j = new Joueur();
 		int score = 0;
-		Joueur j = new Joueur();
 		for(int i =0; i <= idL; i++)
 		{
 			j = iterJoueur.next();
 			pseudo = j.pseudo;
 			score = j.score; 
-			System.out.println(score);
 		}
 		
 		if(idC == 0)

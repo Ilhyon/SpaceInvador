@@ -13,7 +13,7 @@ public class Vaisseau extends Rectangle2D.Double{
 	//Constructeur
 	public Vaisseau()
 	{
-		super((PanneauJeu.LARGEUR/2) - 50, PanneauJeu.HAUTEUR - 50, LONGUEUR, HAUTEUR);
+		super((PanneauJeu.LARGEUR/2) - LONGUEUR, PanneauJeu.HAUTEUR - LONGUEUR, LONGUEUR, HAUTEUR);
 	}
 	
 	
@@ -40,9 +40,9 @@ public class Vaisseau extends Rectangle2D.Double{
 	/* Pour tester les bords, si on est sur un des deux bords, alors x reste ce bord pour ne pas le depacer*/
 	public void testerBords()
 	{
-		if(x >= PanneauJeu.LARGEUR - 50)
+		if(x >= PanneauJeu.LARGEUR - LONGUEUR)
 		{
-			x = PanneauJeu.LARGEUR - 50;
+			x = PanneauJeu.LARGEUR - LONGUEUR;
 		}
 		else if(x <= 0)
 		{

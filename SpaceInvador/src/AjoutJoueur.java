@@ -23,6 +23,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 	Joueur j;
 	InterfaceJeu jeu;
 	ImageIcon icone;
+	int nb;
 	
 	public AjoutJoueur()
 	{
@@ -81,6 +82,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		
 		jeu = new InterfaceJeu();
 		j = new Joueur();
+		nb = 0;
 		
 		pack();
 		setVisible(true);
@@ -97,7 +99,11 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Ajouter"))
 		{
+			nb++;
 			j.pseudo = champPseudo.getText();
+			// Si on ne rentre pas de nom de pseudo, on a un nom automatique
+			if(j.pseudo.equals(""))
+				j.pseudo = "Joueur " + String.valueOf(nb);
 			j.score = 0;
 			jeu.data.add(j);
 			jeu.pseudo.setText(j.pseudo);
