@@ -38,12 +38,6 @@ public class Alien extends Rectangle2D.Double
 		super.y += PAS;
 	}
 	
-	// Score rapporté par la mort de l'alien
-	public int getScore()
-	{
-		return 1;
-	}
-	
 	/* Couleur Alien */
 	public void paint(Graphics2D g2)
 	{

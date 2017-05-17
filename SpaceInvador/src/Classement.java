@@ -36,19 +36,20 @@ public class Classement extends AbstractTableModel{
 	public Object getValueAt(int idL, int idC) 
 	{
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
-		String car = null;
+		String pseudo = null;
 		int score = 0;
 		Joueur j = new Joueur();
 		for(int i =0; i <= idL; i++)
 		{
 			j = iterJoueur.next();
-			car = j.pseudo;
+			pseudo = j.pseudo;
 			score = j.score; 
+			System.out.println(score);
 		}
 		
 		if(idC == 0)
 		{
-			return car;
+			return pseudo;
 		}
 		else
 		{
