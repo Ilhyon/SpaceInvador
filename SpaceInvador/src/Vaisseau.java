@@ -16,6 +16,10 @@ public class Vaisseau extends Rectangle2D.Double{
 		super((PanneauJeu.LARGEUR/2) - 50, PanneauJeu.HAUTEUR - 50, LONGUEUR, HAUTEUR);
 	}
 	
+	public void recentrer()
+	{
+		x = (PanneauJeu.LARGEUR/2) - 50;
+	}
 	
 	public void deplacer(boolean b)
 	{

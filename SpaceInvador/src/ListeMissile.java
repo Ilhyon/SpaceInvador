@@ -77,6 +77,22 @@ public class ListeMissile {
 		return false;
 	}
 	
+	public void testerPlancher(int hauteur)
+	{
+		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
+		Missile m = new Missile();
+		boolean b = false;
+		while(iterMissile.hasNext() && b == false)
+		{
+			m = iterMissile.next();
+			if(m.getY()+Alien.COTE < hauteur)
+			{
+				suprimerMissile(m);
+				b = true;
+			}
+		}
+	}
+	
 	public void suprimerMissile(Missile m)
 	{
 		listeMissilesAffiches.remove(m);

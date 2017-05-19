@@ -20,11 +20,11 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 	JButton fermer, afficher;
 	JTextField champPseudo;
 	JLabel labelPseudo, labelPhrase, labelBienvenue, labelIcone;
-	Joueur j;
+	Joueur peon;
 	InterfaceJeu jeu;
 	ImageIcon icone;
 	
-	public AjoutJoueur()
+	public AjoutJoueur(InterfaceJeu j)
 	{
 		super("Space Invaders !");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);// pour que si on ferme cette fenêtre on ne quitte pas tout le jeu
@@ -79,9 +79,10 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		c.add(panelPseudo);
 		c.add(panelBoutons);
 		
-		jeu = new InterfaceJeu();
-		j = new Joueur();
+		jeu = j;
+		peon = new Joueur();
 		
+		setLocation(600, 50);
 		pack();
 		setVisible(true);
 	}
@@ -97,13 +98,13 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Ajouter"))
 		{
-			j.pseudo = champPseudo.getText();
-			j.score = 0;
-			jeu.data.add(j);
-			jeu.pseudo.setText(j.pseudo);
+			peon.pseudo = champPseudo.getText();
+			peon.score = 0;
+			jeu.pseudo.setText(peon.pseudo);
 			jeu.score.setText(" | Score : " + jeu.point);
 			jeu.timerSpawnAlien.start();
-			jeu.l.listeJoueur.add(j);
+			jeu.timerRefresh.restart();
+			jeu.l.listeJoueur.add(peon);
 			this.dispose();
 			
 		}

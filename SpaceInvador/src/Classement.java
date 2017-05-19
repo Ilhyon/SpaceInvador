@@ -43,8 +43,7 @@ public class Classement extends AbstractTableModel{
 		{
 			j = iterJoueur.next();
 			pseudo = j.pseudo;
-			score = j.score; 
-			System.out.println(score);
+			score = j.score;
 		}
 		
 		if(idC == 0)
