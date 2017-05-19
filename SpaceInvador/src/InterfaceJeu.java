@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -213,19 +214,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{
 			panneau.listeAlien.creerAlien(panneau.LARGEUR);
 		}
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-//		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
-//		 * mettre son pseudo dans le jlabel pseudo*/
-//		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
-//		{
-//			Joueur j = new Joueur();
-//			new AjoutJoueur(this,j);
-//			data.add(j);
-//			pseudo.setText(j.pseudo);
-//		}
-			
 	}
 	
 	public void keyPressed(KeyEvent e) 
