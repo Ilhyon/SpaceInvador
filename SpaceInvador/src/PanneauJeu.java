@@ -12,8 +12,8 @@ import javax.swing.Timer;
 
 public class PanneauJeu extends JComponent 
 {
-	public static final int LARGEUR = 1000;
-	public static final int HAUTEUR = 900;
+	public static final int LARGEUR = 500;
+	public static final int HAUTEUR = 800;
 	
 	Ligne listeAlien;
 	Vaisseau normandy;

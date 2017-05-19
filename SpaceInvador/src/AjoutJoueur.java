@@ -27,7 +27,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 	public AjoutJoueur()
 	{
 		super("Space Invaders !");
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);// pour que si on ferme cette fenêtre on ne quitte pas tout le jeu
+		setDefaultCloseOperation(EXIT_ON_CLOSE);// pour que si on ferme cette fenêtre on ne quitte pas tout le jeu
 		
 		
 		/* Creation du container avec 2 lignes : une pour le champ et le label et 
@@ -53,7 +53,7 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		/* Creation des deux lignes qui contiendront un petit message de bienvenue et une phrase.*/
 		JPanel panelBienvenue = new JPanel();
 		panelBienvenue.setLayout(new FlowLayout(FlowLayout.CENTER));
-		labelBienvenue = new JLabel("Bienvenue dans le jeu Space Invadors !");
+		labelBienvenue = new JLabel("Bienvenue dans le jeu Space Invaders !");
 		panelBienvenue.add(labelBienvenue);
 		
 		JPanel panelPhrase = new JPanel();
@@ -92,6 +92,8 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("Fermer"))
 		{
 			this.dispose();
+			jeu.dispose();
+			System.exit(0); // pour fermer totalement les deux fenêtreq
 		}
 		else if(e.getActionCommand().equals("Ajouter"))
 		{
@@ -99,8 +101,9 @@ public class AjoutJoueur extends JFrame implements ActionListener{
 			j.score = 0;
 			jeu.data.add(j);
 			jeu.pseudo.setText(j.pseudo);
-			jeu.score.setText("0");
+			jeu.score.setText(" | Score : " + jeu.point);
 			jeu.timerSpawnAlien.start();
+			jeu.l.listeJoueur.add(j);
 			this.dispose();
 			
 		}

@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.ListIterator;
 import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,15 +25,18 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	JLabel pseudo, niveau, score; // Affichage de ces elements en haut de la page
 	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
-	Classement classement;
 	Timer timerRefresh, timerSpawnAlien;
-	JTabbedPane onglets;
+	int okButton, cptLevel, level, point;
+	ListeJoueur l;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
 	{
-		super("Super Space Invador");
+		super("Super Space Invaders");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		cptLevel = 0;
+		level = 0;
+		point = 0;
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
@@ -40,9 +46,9 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		data = new Vector<Joueur>();
 		
 		/* Initialisation des JLabels*/
-		pseudo = new JLabel("Pseudo ");
-		niveau = new JLabel("Niveau : 0");
-		score = new JLabel("Score : 0");
+		pseudo = new JLabel("Pseudo : ? ");
+		niveau = new JLabel("Niveau : " + level);
+		score = new JLabel(" | Score : " + point);
 		
 		/* Ini des lignes pour la mise en forme de la page, il y aura 3 lignes : une avec les 
 		 * JLabels, une avec le pnneau de jeu et la dernière avec le classement */
@@ -52,32 +58,44 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		panelAffichage.add(niveau);
 		panelAffichage.add(score);
 		panneau = new PanneauJeu();
-		JPanel panelClassement = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		classement = new Classement();
-		//panelClassement.add(classement);
 		c.add(panelAffichage,BorderLayout.NORTH);
 		
-		onglets = new JTabbedPane();
-		onglets.add("Jeu", panneau);
-		onglets.add("Classement", panelClassement);
-		c.add(onglets);
+		l = new ListeJoueur();
+		okButton = 1;
+		
+		c.add(panneau);
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
+				
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
 				panneau.normandy.testerBords();
 				
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
-					JOptionPane.showMessageDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.INFORMATION_MESSAGE);
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
+					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+				}
+				if(okButton == 0)
+				{
+					InterfaceClassement interC = new InterfaceClassement(InterfaceJeu.this);
+				    interC.classement.fireTableDataChanged();
+				}
+				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien))
+				{
+					point ++;
+					score.setText(" | Score : " + point);
+					majScore();
 				}
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
+				
+					
 			}
 		});
 		
@@ -86,7 +104,17 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			public void actionPerformed(ActionEvent e) 
 			{ 				
 				creationAlien();
-				repaint(); 			
+				repaint();
+				if(cptLevel < 10)
+				{
+					cptLevel ++;
+				}
+				else
+				{ 
+					level ++;
+					cptLevel = 0;
+					niveau.setText("Niveau : " + level);
+				}
 			} 		
 		});
 		
@@ -97,9 +125,35 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		setVisible(true);
 	}
 	
+	public void majScore()
+	{
+		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		while(iterJoueur.hasNext())
+		{
+			Joueur j = new Joueur();
+			j = iterJoueur.next();
+			if(j.pseudo == this.pseudo.getText() )
+			{
+				j.score = point;
+			}
+		}
+	}
+	
 	public void creationAlien()
 	{
+//		int nb = 5;
+//		if(data.score>0)
+//		{
+//			nb = 5;
+//		}
+//		else if(score > 3)
+//		{
+//			nb = 7;
+//		}
 		int nb = 1;
+		
+		// pour changer la largeur du contour
+		// g2.setStroke(new BasicStroke(2.0f));
 		
 		for(int i = 0; i <= nb; i++)
 		{
@@ -107,7 +161,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		}
 	}
 	
-//	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 //		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
 //		 * mettre son pseudo dans le jlabel pseudo*/
 //		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
@@ -117,7 +171,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 //			data.add(j);
 //			pseudo.setText(j.pseudo);
 //		}
-//	}
+			
+	}
 	
 	public void keyPressed(KeyEvent e) 
 	{

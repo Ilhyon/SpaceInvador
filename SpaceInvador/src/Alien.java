@@ -9,7 +9,7 @@ public class Alien extends Rectangle2D.Double
 {
 	
 	private static final int PAS = 2;
-	public static final int COTE = 50;
+	public static final int COTE = 40;
 	int solidite;
 	
 	// constructeur
@@ -26,21 +26,16 @@ public class Alien extends Rectangle2D.Double
 	}
 	
 	// Pour avoir le rectangle autour du rond
-	public boolean interect(Alien a)
+	public boolean intersectAA(Alien a)
 	{
 		return intersects(a.getBounds2D());
 	}
+	
 
 	// Pour descendre
 	public void descendre()
 	{
 		super.y += PAS;
-	}
-	
-	// Score rapporté par la mort de l'alien
-	public int getScore()
-	{
-		return 1;
 	}
 	
 	/* Couleur Alien */

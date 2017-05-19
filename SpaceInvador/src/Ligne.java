@@ -18,7 +18,7 @@ public class Ligne {
 		
 		Random rAlien = new Random();
 		int x = 0 + rAlien.nextInt(10 - 0);
-		x = x*100;
+		x = x*50;
 		Alien a = new Alien(x);
 		listeAlien.add(a);
 	}
@@ -27,7 +27,7 @@ public class Ligne {
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().interect(a))
+			if(iterAlien.next().intersectAA(a))
 				return true;
 		return false;
 	}
@@ -35,6 +35,7 @@ public class Ligne {
 	public void supprimerAlien(Alien a)
 	{
 		listeAlien.remove(a);
+		//listeAlien.add(a);
 	}
 	
 	public void descendreAliens()
@@ -44,22 +45,22 @@ public class Ligne {
 			iterAlien.next().descendre();
 	}
 	
-	public boolean testerLettre(Alien a)
-	{
-		if(listeAlien.contains(a))
-		{
-			supprimerAlien(a);
-			return true;
-		}
-		return false;
-	}
+//	public boolean testerAlien(Alien a)
+//	{
+//		if(listeAlien.contains(a))
+//		{
+//			supprimerAlien(a);
+//			return true;
+//		}
+//		return false;
+//	}
 
 	
 	public boolean testerPlancher(int hauteur)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().getY()+Alien.COTE>hauteur)
+			if(iterAlien.next().getY()+Alien.COTE > hauteur)
 				return true;
 		return false;
 	}
