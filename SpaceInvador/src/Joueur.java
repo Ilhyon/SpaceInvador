@@ -15,11 +15,6 @@ public class Joueur {
 		score = 0;
 	}
 	
-	public int getScore(ListeMissile l)
-	{
-		return l.getScore();
-	}
-	
 	public String toString()
 	{
 		StringBuffer buf = new StringBuffer();

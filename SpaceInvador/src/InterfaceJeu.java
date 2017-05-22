@@ -5,7 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.ListIterator;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -23,13 +24,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 {
 	/* Elements initiaux dont on va avoir besoin*/
 	JLabel pseudo, niveau, score; // Affichage de ces elements en haut de la page
-	Vector<Joueur> data; // Pour faire notre liste de joueurs
 	PanneauJeu panneau; // Panneau du jeu
 	Timer timerRefresh, timerSpawnAlien;
-	Classement classement;
-	int okButton, cptLevel, level, point;
+	int okButton, cptLevel, level, point, cptRobustesse;
 	ListeJoueur l;
-	Missile m;
+	AjoutJoueur ajoutJ;
 	
 	/* Constructeur*/
 	public InterfaceJeu()
@@ -39,14 +38,14 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		cptLevel = 0;
 		level = 0;
 		point = 0;
-		classement = new Classement(l);
+		cptRobustesse = 0;
+		
+		ajoutJ = new AjoutJoueur(InterfaceJeu.this);
 		
 		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
 //		c.setLayout(new GridLayout(3,1));
-		
-		data = new Vector<Joueur>();
 		
 		/* Initialisation des JLabels*/
 		pseudo = new JLabel("Pseudo : ? ");
@@ -70,20 +69,14 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		timerRefresh = new Timer(30, new ActionListener()
 		{
-			public void actionPerformed(ActionEvent e) 
-			{
+			public void actionPerformed(ActionEvent e) {
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
 				
-				if(panneau.listeAlien.testerPlancher(panneau.getHauteur() - 200))
-					panneau.normandy.testerBords();
+				panneau.listeMissile.testerPlancher(0);
 				
-				// Pour supprimer missile sortant du panneau de jeu
-//				if(panneau.listeMissile.testerPlafond(panneau.getHauteur()))
-//				{
-//					System.out.println("supp-missile");
-//					panneau.listeMissile.supprimerMissile(panneau.listeMissile.m);
-//				}
+				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
+				panneau.normandy.testerBords();
 				
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
@@ -93,12 +86,15 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				}
 				if(okButton == 0)
 				{
-				    new InterfaceClassement(InterfaceJeu.this);
+					InterfaceClassement interC = new InterfaceClassement(InterfaceJeu.this);
+				    interC.classement.fireTableDataChanged();
+				    okButton = 1;
 				}
 				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien))
 				{
 					point ++;
 					score.setText(" | Score : " + point);
+					majScore();
 				}
 				
 				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
@@ -112,7 +108,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{ 			
 			public void actionPerformed(ActionEvent e) 
 			{ 				
-				creationAlien();
+				creationAlien(cptRobustesse);
 				repaint();
 				if(cptLevel < 10)
 				{
@@ -121,6 +117,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				else
 				{ 
 					level ++;
+					cptRobustesse ++;
 					cptLevel = 0;
 					niveau.setText("Niveau : " + level);
 				}
@@ -134,7 +131,72 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		setVisible(true);
 	}
 	
-	public void creationAlien()
+	public void majScore()
+	{
+		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		while(iterJoueur.hasNext())
+		{
+			Joueur j = new Joueur();
+			j = iterJoueur.next();
+			if(j.pseudo == this.pseudo.getText() )
+			{
+				j.score = point;
+			}
+		}
+	}
+	
+	public Joueur selectJoueur()
+	{
+		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		while(iterJoueur.hasNext())
+		{
+			Joueur j = new Joueur();
+			j = iterJoueur.next();
+			if(j.pseudo == this.pseudo.getText() )
+			{
+				return j;
+			}
+			else
+			{
+				return null;
+			}
+		}
+		return null;
+	}
+	
+	public void reset(int i)
+	{
+		timerRefresh.stop();
+		timerSpawnAlien.stop();
+		
+		score.setText(" | Score : 0");
+		
+		if(i == 1)// on recommence donc il faut remettre le score du joueur a 0
+		{
+			selectJoueur().score = 0;
+			
+		}
+		
+		point = 0;
+		niveau.setText("Niveau : 0 ");
+		level = 0;
+		cptLevel = 0;
+		
+		panneau.listeAlien.listeAlien.clear();
+		panneau.listeMissile.listeMissilesAffiches.clear();
+		
+		panneau.normandy.recentrer();
+		
+		repaint();
+	}
+	
+	public void startTimer()
+	{
+		timerRefresh.start();
+		timerSpawnAlien.start();
+	}
+	
+	public void creationAlien(int cptRobustesse)
 	{
 //		int nb = 5;
 //		if(data.score>0)
@@ -152,21 +214,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		for(int i = 0; i <= nb; i++)
 		{
-			panneau.listeAlien.creerAlien(panneau.LARGEUR);
+			panneau.listeAlien.creerAlien(panneau.LARGEUR, cptRobustesse);
 		}
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-//		/* si on clique sur le bouton ajout joueur, lance une fenetre pour créer un joueur et
-//		 * mettre son pseudo dans le jlabel pseudo*/
-//		if(e.getActionCommand().equals("Ajouter un nouveau joueur"))
-//		{
-//			Joueur j = new Joueur();
-//			new AjoutJoueur(this,j);
-//			data.add(j);
-//			pseudo.setText(j.pseudo);
-//		}
-			
 	}
 	
 	public void keyPressed(KeyEvent e) 
@@ -208,7 +257,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public static void main(String[] args) 
 	{
-		new AjoutJoueur();
+		new InterfaceJeu();
 	}
 
 	

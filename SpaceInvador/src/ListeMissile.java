@@ -3,28 +3,26 @@ import java.util.*;
 
 public class ListeMissile {
 	ArrayList<Missile> listeMissilesAffiches;
-	int point;
-	Missile m;
 	
 	public ListeMissile()
 	{
 		listeMissilesAffiches = new ArrayList<Missile>();
-		point = 0;
 	}
 	
 	public void creerMissile(double longueur, Vaisseau v)
 	{
 		double x = v.getX() + v.getWidth()/2;
 		double y = v.getY();
-		m = new Missile(x, y);
+		Missile m = new Missile(x, y);
 		// Pou(r empêcher les missiles de se chevaucher 
 		while(intersect(m))
-		{	
+		{
+			// pour supprimer le dernier élément de la liste
+			//listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
 			x = v.getX() + v.getWidth()/2;
 			y = v.getY() + 5;
 			m = new Missile(x, y);
-			// pour supprimer le dernier élément de la liste
-			listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
+			listeMissilesAffiches.remove(listeMissilesAffiches.size()-1);
 			
 			
 		}
@@ -51,6 +49,7 @@ public class ListeMissile {
 		// pour chaque missile on va tester si ils sont dans un alien
 		while(iterMissile.hasNext() && sup == false)
 		{
+			iterAlien = l.listeAlien.listIterator();
 			m = iterMissile.next();
 			// parcours des differents aliens
 			while(iterAlien.hasNext() && sup == false)
@@ -60,19 +59,14 @@ public class ListeMissile {
 				if(m.intersectMA(a))
 				{
 					l.supprimerAlien(a);
-					supprimerMissile(m);
-					point ++;
+					suprimerMissile(m);
+					//System.out.println(point);
 					sup = true;
 					return true;
 				}
 			}
 		}
 		return false;
-	}
-	
-	public int getScore()
-	{
-		return point;
 	}
 	
 	public boolean intersect(Missile m)
@@ -84,18 +78,25 @@ public class ListeMissile {
 		return false;
 	}
 	
-	public void supprimerMissile(Missile m)
-	{
-		listeMissilesAffiches.remove(m);
-	}
-	
-	public boolean testerPlafond(int hauteur)
+	public void testerPlancher(int hauteur)
 	{
 		ListIterator<Missile> iterMissile = listeMissilesAffiches.listIterator();
-		while(iterMissile.hasNext())
-			if(iterMissile.next().getY()+Missile.DIAMETRE == hauteur)
-				return true;
-		return false;
+		Missile m = new Missile();
+		boolean b = false;
+		while(iterMissile.hasNext() && b == false)
+		{
+			m = iterMissile.next();
+			if(m.getY()+Alien.COTE < hauteur)
+			{
+				suprimerMissile(m);
+				b = true;
+			}
+		}
+	}
+	
+	public void suprimerMissile(Missile m)
+	{
+		listeMissilesAffiches.remove(m);
 	}
 	
 	public void paint(Graphics2D g2)

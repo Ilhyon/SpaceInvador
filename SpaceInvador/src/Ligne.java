@@ -13,15 +13,47 @@ public class Ligne {
 		
 	}
 	
-	public void creerAlien(int longueur)
+	public void creerAlien(int longueur, int cptRobustesse)
 	{
+		if(listeAlien.size()>0)
+		{
+			Random rAlien = new Random();
+			int x = 0 + rAlien.nextInt(10 - 0);
+			x = x*50;
+			Alien a = new Alien(x, cptRobustesse);
+			while(intersect(a))
+			{
+				x = 0 + rAlien.nextInt(10 - 0);
+				x = x*50;
+				a = new Alien(x, cptRobustesse);
+			}
+			listeAlien.add(a);
+		}
+		else
+		{
+			Random rAlien = new Random();
+			int x = 0 + rAlien.nextInt(10 - 0);
+			x = x*50;
+			Alien a = new Alien(x, cptRobustesse);
+			listeAlien.add(a);
+		}
 		
-		Random rAlien = new Random();
-		int x = 0 + rAlien.nextInt(10 - 0);
-		x = x*50;
-		Alien a = new Alien(x);
-		listeAlien.add(a);
 	}
+	
+//	public void creerBulle(int longueur)
+//	{
+//		if(listeLettres.size()>0)
+//		{
+//			int x = Bulle.DIAMETRE/2 + r.nextInt(longueur-Bulle.DIAMETRE);
+//			Bulle b = new Bulle(x, Bulle.DIAMETRE/2,l);
+//			while(intersect(b))
+//			{
+//				x = Bulle.DIAMETRE/2 + r.nextInt(longueur-Bulle.DIAMETRE);
+//				b = new Bulle(x, Bulle.DIAMETRE/2,l);
+//			}
+//			listeLettresAffichees.put(l, b);
+//		}
+//	}
 	
 	public boolean intersect(Alien a)
 	{
@@ -56,11 +88,11 @@ public class Ligne {
 //	}
 
 	
-	public boolean testerPlancher(double hauteur)
+	public boolean testerPlancher(int hauteur)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator();
 		while(iterAlien.hasNext())
-			if(iterAlien.next().getY() + Alien.COTE > hauteur)
+			if(iterAlien.next().getY()+Alien.COTE > hauteur)
 				return true;
 		return false;
 	}
