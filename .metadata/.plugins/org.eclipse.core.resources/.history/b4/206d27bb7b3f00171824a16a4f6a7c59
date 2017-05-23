@@ -15,16 +15,17 @@ public class ListeMissile {
 		double y = v.getY();
 		Missile m = new Missile(x, y);
 		// Pou(r empêcher les missiles de se chevaucher 
-		while(intersect(m))
-		{
-			// pour supprimer le dernier élément de la liste
-			listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
-			x = v.getX() + v.getWidth()/2;
-			y = v.getY() + 5;
-			m = new Missile(x, y);
-			
-			
-		}
+//		while(intersect(m))
+//		{
+//			// pour supprimer le dernier élément de la liste
+//			//listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1);
+//			x = v.getX() + v.getWidth()/2;
+//			y = v.getY() + 5;
+//			m = new Missile(x, y);
+//			//listeMissilesAffiches.remove(listeMissilesAffiches.size()-1);
+//			
+//			
+//		}
 		listeMissilesAffiches.add(m);
 		
 		
@@ -32,9 +33,9 @@ public class ListeMissile {
 	
 	public void monterMissile()
 	{
-		Iterator<Missile> iterMissile = listeMissilesAffiches.iterator();
-		while(iterMissile.hasNext())
-			iterMissile.next().monter();
+		Iterator<Missile> enumBulle = listeMissilesAffiches.iterator();
+		while(enumBulle.hasNext())
+			enumBulle.next().monter();
 	}
 	
 	public boolean intersectWithAlien(Ligne l)

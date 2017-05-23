@@ -32,9 +32,9 @@ public class ListeMissile {
 	
 	public void monterMissile()
 	{
-		Iterator<Missile> iterMissile = listeMissilesAffiches.iterator();
-		while(iterMissile.hasNext())
-			iterMissile.next().monter();
+		Iterator<Missile> enumBulle = listeMissilesAffiches.iterator();
+		while(enumBulle.hasNext())
+			enumBulle.next().monter();
 	}
 	
 	public boolean intersectWithAlien(Ligne l)

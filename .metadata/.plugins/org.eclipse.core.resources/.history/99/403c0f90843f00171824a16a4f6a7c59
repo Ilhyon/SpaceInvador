@@ -1,0 +1,81 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
+public class Alien extends Rectangle2D.Double
+{
+	
+	private static final int PAS = 2;
+	public static final int COTE = 40;
+	int cptRobustesse, r;
+	ArrayList<Integer> listeRobustesseRandom;
+	Graphics2D g2 = null;
+	
+	
+	// constructeur
+	public Alien(int centreX, int cptRobustesse)
+	{
+		super(centreX, 0, COTE, COTE);
+		this.cptRobustesse = cptRobustesse;
+		r = 0;
+		g2.setStroke(new BasicStroke(r));
+		listeRobustesseRandom = new ArrayList<Integer>();
+	}
+	
+	public Alien()
+	{
+		super();
+	}
+	
+	// Pour avoir le rectangle autour du rond
+	public boolean intersectAA(Alien a)
+	{
+		return intersects(a.getBounds2D());
+	}
+	
+
+	// Pour descendre
+	public void descendre()
+	{
+		super.y += PAS;
+	}
+	
+	public void robustesse(int r)
+	{
+		if(cptRobustesse == 0)
+			r = 0;
+		else
+		{
+			r = new Random().nextInt(cptRobustesse) + 1;
+			listeRobustesseRandom.add(r);
+			for(int i = 0; i <= listeRobustesseRandom.size(); i++)
+			{
+				if(listeRobustesseRandom.get(i)==listeRobustesseRandom.get(i+1))
+				{
+					listeRobustesseRandom.remove(listeRobustesseRandom);
+					listeRobustesseRandom.add(r);
+				}
+			}
+		}
+				
+	}
+	
+	/* Couleur Alien */
+	public void paint(Graphics2D g2)
+	{
+		// permet aux Aliens de prendre une épaisseur random
+		if(cptRobustesse == 0 )
+			r = 0;
+		else
+			r = new Random().nextInt(cptRobustesse) + 1;
+		System.out.println("robustesse " + cptRobustesse + " random " + r);
+		g2.setStroke(new BasicStroke(r));
+		g2.setColor(Color.GREEN);
+		g2.draw(this);
+	}
+	
+}

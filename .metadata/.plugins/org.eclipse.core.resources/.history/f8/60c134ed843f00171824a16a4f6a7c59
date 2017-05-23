@@ -209,6 +209,9 @@ public class InterfaceJeu extends JFrame implements KeyListener
 //		}
 		int nb = 1;
 		
+		// pour changer la largeur du contour
+		// g2.setStroke(new BasicStroke(2.0f));
+		
 		for(int i = 0; i <= nb; i++)
 		{
 			panneau.listeAlien.creerAlien(panneau.LARGEUR, cptRobustesse);

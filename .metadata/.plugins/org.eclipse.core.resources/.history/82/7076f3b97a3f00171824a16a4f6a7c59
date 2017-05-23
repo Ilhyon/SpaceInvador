@@ -1,7 +1,6 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
@@ -11,22 +10,12 @@ public class Alien extends Rectangle2D.Double
 	private static final int PAS = 2;
 	public static final int COTE = 40;
 	int cptRobustesse, r;
-	Stroke stroke;
-	
-	
 	
 	// constructeur
 	public Alien(int centreX, int cptRobustesse)
 	{
 		super(centreX, 0, COTE, COTE);
 		this.cptRobustesse = cptRobustesse;
-		if(cptRobustesse != 0)
-		{
-			r = new Random().nextInt(cptRobustesse) + 1;
-		}
-		System.out.println(r);
-		stroke = new BasicStroke(r);
-		
 	}
 	
 	public Alien()
@@ -50,7 +39,9 @@ public class Alien extends Rectangle2D.Double
 	/* Couleur Alien */
 	public void paint(Graphics2D g2)
 	{
-		g2.setStroke(stroke);
+		if(cptRobustesse == 1 )
+			r = new Random().nextInt(cptRobustesse) + 1;
+		g2.setStroke(new BasicStroke(r));
 		g2.setColor(Color.GREEN);
 		g2.draw(this);
 	}
