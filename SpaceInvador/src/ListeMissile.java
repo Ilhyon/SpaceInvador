@@ -1,3 +1,4 @@
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.util.*;
 
@@ -59,6 +60,7 @@ public class ListeMissile {
 				if(m.intersectMA(a) && a.r != 0)
 				{
 					a.r --;
+					a.stroke = new BasicStroke(a.r);
 					suprimerMissile(m);
 					sup = true;
 					return true;
