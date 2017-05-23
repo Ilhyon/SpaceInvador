@@ -13,17 +13,14 @@ public class Vaisseau extends Rectangle2D.Double{
 	//Constructeur
 	public Vaisseau()
 	{
-		//coordonnees x, y hauteur, longueur
 		super((PanneauJeu.LARGEUR/2) - 50, PanneauJeu.HAUTEUR - 50, LONGUEUR, HAUTEUR);
 	}
 	
-	// Pour recentrer le vaisseau
 	public void recentrer()
 	{
 		x = (PanneauJeu.LARGEUR/2) - 50;
 	}
 	
-	// Pour deplacer le vaisseau
 	public void deplacer(boolean b)
 	{
 		if(b == true){
@@ -31,22 +28,20 @@ public class Vaisseau extends Rectangle2D.Double{
 		}
 		else
 		{
-			x -= LONGUEUR/2; // vers la gauche
-		} 
+			x -= LONGUEUR/2;
+		} // vers la gauche
 		
 	}
 	
-	//Graphisme du vaisseau
 	public void paint(Graphics2D g2)
-	{ 
+	{
+		//Color darkBlue  = new Color(77,176,230); 
 		g2.setStroke(new BasicStroke(2.0f));
 		g2.setColor(Color.CYAN);
 		g2.draw(this);
 	}
 	
-	/* Pour tester les bords, si on est sur un des deux bords, 
-	 * alors x devient ce bord et on ne peut plus deplacer le 
-	 * vaisseau par la */
+	/* Pour tester les bords, si on est sur un des deux bords, alors x reste ce bord pour ne pas le depacer*/
 	public void testerBords()
 	{
 		if(x >= PanneauJeu.LARGEUR - 50)
@@ -59,13 +54,11 @@ public class Vaisseau extends Rectangle2D.Double{
 		}
 	}
 	
-	// Pour avoir la hauteur
 	public int getHAUTEUR()
 	{
 		return this.HAUTEUR;
 	}
 	
-	// Pour avoir la longueur
 	public int getLONGUEUR()
 	{
 		return this.LONGUEUR;

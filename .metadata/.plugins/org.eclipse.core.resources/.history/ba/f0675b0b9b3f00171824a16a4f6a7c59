@@ -10,43 +10,43 @@ public class Alien extends Rectangle2D.Double
 	
 	private static final int PAS = 2;
 	public static final int COTE = 40;
-	int r; // robustesse
+	int r;
 	Stroke stroke;
 	
-	// Constructeur 
-	public Alien(int x, int level)
+	
+	
+	// constructeur
+	public Alien(int centreX, int level)
 	{
-		// coordonnées x, y, largeur, hauteur
-		super(x, 0, COTE, COTE);
-		// Pour que les Aliens prennent une robustesse random
-		// en fonction du niveau : genre si niveau 5
-		// l'alien sera soit de robustesse 1,2,3,4,5 aléatoirement
-		r = new Random().nextInt(level) + 1;
-		
-		// La robustesse est représentée par l'épaisseur du contour
-		// Chaque alien possède sa propre robustesse
+		super(centreX, 0, COTE, COTE);
+		r = 1; // de base la robustesse de l'alien est de 1
+		//Pour que les aliens prennent une épaisseur/robustesse random
+		if(level != 0)
+		{
+			r = new Random().nextInt(level) + 1;
+		}
 		stroke = new BasicStroke(r);
 	}
 	
-	// Constructeur par defaut
 	public Alien()
 	{
 		super();
 	}
 	
-	//Intersection entre un alien et un alien
+	// Pour avoir le rectangle autour du rond
 	public boolean intersectAA(Alien a)
 	{
 		return intersects(a.getBounds2D());
 	}
 	
-	// Pour faire descendre l'alien
+
+	// Pour descendre
 	public void descendre()
 	{
 		super.y += PAS;
 	}
 	
-	//Graphisme de l'alien
+	/* Couleur Alien */
 	public void paint(Graphics2D g2)
 	{
 		g2.setStroke(stroke);

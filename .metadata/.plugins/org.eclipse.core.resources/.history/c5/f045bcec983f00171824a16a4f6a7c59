@@ -59,15 +59,5 @@ public class Vaisseau extends Rectangle2D.Double{
 		}
 	}
 	
-	// Pour avoir la hauteur
-	public int getHAUTEUR()
-	{
-		return this.HAUTEUR;
-	}
-	
-	// Pour avoir la longueur
-	public int getLONGUEUR()
-	{
-		return this.LONGUEUR;
-	}
+
 }
