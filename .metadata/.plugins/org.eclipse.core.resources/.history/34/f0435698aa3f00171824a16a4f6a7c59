@@ -52,7 +52,7 @@ public class Ligne {
 	public boolean intersect(Alien a)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator(); // Creation iterateur de la liste d'alien
-		// tant qu'il y a des aliens
+		// tant que l'iteration possede des elements
 		while(iterAlien.hasNext())
 			// Si l'element suivant chevauche l'alien
 			if(iterAlien.next().intersectAA(a))
@@ -70,7 +70,7 @@ public class Ligne {
 	public void descendreAliens()
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator(); // Creation iterateur de la liste d'alien
-		// Tant qu'il y a des aliens
+		// Tant que l'iterateur possede des elements
 		while(iterAlien.hasNext())
 			iterAlien.next().descendre(); // Les aliens descendent
 	}
@@ -79,7 +79,7 @@ public class Ligne {
 	public boolean testerPlancher(int hauteur)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator(); // Creation iterateur de la liste d'alien
-		//  Tant qu'il y a des aliens
+		//  Tant que l'iterateur possede des elements
 		while(iterAlien.hasNext())
 			// Si l'alien touche le bas du panneau
 			if(iterAlien.next().getY()+Alien.COTE > hauteur)
@@ -91,7 +91,7 @@ public class Ligne {
 	public void paint(Graphics2D g2)
 	{
 		ListIterator<Alien> iterAlien = listeAlien.listIterator(); // Creation iterateur de la liste d'alien
-		// tant qu'il y a des aliens
+		// tant que l'iterateur possede des elements
 		while(iterAlien.hasNext())
 			iterAlien.next().paint(g2); // Les aliens ont le graphisme d'un Alien
 	}

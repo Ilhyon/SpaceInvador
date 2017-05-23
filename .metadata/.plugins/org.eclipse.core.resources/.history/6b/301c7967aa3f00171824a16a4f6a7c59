@@ -65,7 +65,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
 				
-				panneau.listeMissile.testerPlafond(0); // test si les missiles sorte du panneau
+				panneau.listeMissile.testerPlancher(0); // test si les missiles sorte du panneau
 				
 				
 				// Si l'alien touche le vaisseau fin de la game
