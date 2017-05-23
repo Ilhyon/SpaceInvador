@@ -2,7 +2,6 @@ import java.util.ListIterator;
 
 import javax.swing.table.AbstractTableModel;
 
-// Cette classe permet de créer le tableau de classement des joueurs
 public class Classement extends AbstractTableModel{
 	ListeJoueur l; // Creation d'un objet listeJoueur
 
