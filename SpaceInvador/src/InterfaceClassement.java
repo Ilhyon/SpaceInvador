@@ -51,6 +51,8 @@ public class InterfaceClassement extends JFrame implements ActionListener
 		{
 			jeu.reset(1);
 			dispose();
+			Joueur licorne = new Joueur(jeu.selectJoueur().pseudo);
+			jeu.l.listeJoueur.add(licorne);
 			jeu.startTimer();
 		}
 		

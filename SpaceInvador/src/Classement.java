@@ -38,7 +38,7 @@ public class Classement extends AbstractTableModel{
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
 		String pseudo = null;
 		int score = 0;
-		Joueur j = new Joueur();
+		Joueur j;
 		for(int i =0; i <= idL; i++)
 		{
 			j = iterJoueur.next();

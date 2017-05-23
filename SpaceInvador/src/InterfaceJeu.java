@@ -97,8 +97,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				}
 				
 				repaint();
-				
-					
 			}
 		});
 		
@@ -130,32 +128,32 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void majScore()
 	{
-		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
-		while(iterJoueur.hasNext())
-		{
-			Joueur j = new Joueur();
-			j = iterJoueur.next();
-			if(j.pseudo == this.pseudo.getText() )
-			{
-				j.score = point;
-			}
-		}
+		selectJoueur().score = point;
 	}
 	
 	public Joueur selectJoueur()
 	{
+		
+		int max = 0;
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		for(int i = 0; i < l.listeJoueur.size(); i ++)
+		{
+			Joueur j;
+			j = iterJoueur.next();
+			if(max < j.nbJoueur)
+			{
+				max = j.nbJoueur;
+			}
+		}
+		iterJoueur = l.listeJoueur.listIterator();
 		while(iterJoueur.hasNext())
 		{
-			Joueur j = new Joueur();
+			Joueur j;
 			j = iterJoueur.next();
-			if(j.pseudo == this.pseudo.getText() )
+			
+			if(max == j.nbJoueur)
 			{
 				return j;
-			}
-			else
-			{
-				return null;
 			}
 		}
 		return null;
@@ -168,15 +166,9 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		score.setText(" | Score : 0");
 		
-		if(i == 1)// on recommence donc il faut remettre le score du joueur a 0
-		{
-			selectJoueur().score = 0;
-			
-		}
-		
 		point = 0;
 		niveau.setText("Niveau : 0 ");
-		level = 0;
+		level = 1;
 		cptLevel = 0;
 		
 		panneau.listeAlien.listeAlien.clear();
