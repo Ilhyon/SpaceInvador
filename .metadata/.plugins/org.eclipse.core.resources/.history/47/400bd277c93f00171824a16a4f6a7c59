@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SimpleClient {
+	
+	ArrayList<Produit> ListProduits;
+	Produit p;
+	int quantite;
+	Scanner sc;
+	float somme;
+	
+
+	public SimpleClient()
+	{
+//		sc = new Scanner(System.in);
+//		System.out.println("Veuillez saisir une quantite :");
+//		quantite = 0;
+//		p = new Produit(p, quantite);
+		ListProduits = new ArrayList<Produit>();
+		somme = 0;
+	}
+
+	public void ajouteProduit(Produit p)
+	{
+		ListProduits.add(p);
+		System.out.println(p.prix);
+	}
+
+	public float prixChariot()
+	{
+		for(int i = 0; i < ListProduits.size(); i++)
+			somme += (ListProduits.get(i).prix*ListProduits.get(i).quantite) - ListProduits.get(i).reduc;
+		return somme;
+	}
+	
+	public String toString();
+	{
+		StringBuffer buf = new StringBuffer();
+		for(int i = 0; i < ListProduits.size(); i++)
+		{
+			buf.append("Nom : ");
+			buf.append(ListProduits.get(i).nom);
+			buf.append("\n | Identifiant : ");
+			buf.append(ListProduits.get(i).code);
+			buf.append("\n | Quantite : ");
+			buf.append(ListProduits.get(i).quantite);
+			buf.append("\n | Prix : ");
+			buf.append(ListProduits.get(i).prix);
+			buf.append("\n | Réduction : ");
+			buf.append(ListProduits.get(i).reduc);
+			buf.append("\n Total : ");
+			buf.append(somme);
+		}
+
+		return buf.toString();
+	}
+	
+	public static void main(String[] args) {
+		SimpleClient s = new SimpleClient();
+		Produit tomate = new Produit("Tomate", 2, 4, 3, 1);
+		Produit salade = new Produit("Salade", 3, 5, 2, 0);
+		s.ajouteProduit(salade);
+		s.ajouteProduit(tomate);
+		System.out.println(s.prixChariot());
+		
+	}
+}
+

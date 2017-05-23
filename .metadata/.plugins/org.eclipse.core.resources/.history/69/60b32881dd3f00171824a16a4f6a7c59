@@ -1,0 +1,77 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Interface extends JFrame implements KeyListener{
+
+	JMenu barre;
+	JMenuBar fichier, rechercher;
+	JMenuItem ouvrir, sauvegarder, quitter, valeur;
+	JButton ajouter;
+	JTextField texteNombre;
+	JTextArea area;
+	JLabel labelNombre;
+	
+	public Interface() {
+		
+		super("Arbre Binaire");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		c.setLayout(new GridLayout(2,1));
+		
+		JPanel panelAire = new JPanel();
+		area = new JTextArea(10,20);
+		panelAire.add(area);
+		c.add(panelAire);
+		
+		JPanel panelBas = new JPanel();
+		panelBas.setLayout(new GridLayout(1, 3));
+		panelBas.add(labelNombre, BorderLayout.WEST);
+		panelBas.add(texteNombre, BorderLayout.CENTER);
+		panelBas.add(ajouter, BorderLayout.EAST);
+		c.add(panelBas);
+		
+		
+		pack();
+		setVisible(true);
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void main(String[] args) {
+		new Interface();
+
+	}
+
+}

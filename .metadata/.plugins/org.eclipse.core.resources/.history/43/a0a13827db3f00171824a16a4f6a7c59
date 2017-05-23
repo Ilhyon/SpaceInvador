@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public class SuperMarche {
+
+	Hashtable<Integer,Produit> stock; // la clé est le codeBarre du produit
+	ArrayList<SimpleClient> listeHabitue;
+	int prochainNumeroCarte;
+	
+	public SuperMarche() {
+		stock = new Hashtable<Integer, Produit>();
+		listeHabitue = ArrayList<SimpleClient>();
+		prochainNumeroCarte = 0;
+	}
+	
+	public void 
+
+}

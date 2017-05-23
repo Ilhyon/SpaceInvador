@@ -2,13 +2,14 @@
 public class Joueur {
 	String pseudo; // pseudo du joueur
 	int score, nbJoueur; // son score
-	static int nb = 0;
+	static int nb = 0, level = 1;
 	
 	// Constructeur si le joueur ne rentre pas de pseudo
 	Joueur()
 	{
 		pseudo = null;
 		score = 0;
+		level = 1;
 		nb ++;
 		nbJoueur = nb;
 	}
@@ -18,6 +19,7 @@ public class Joueur {
 	{
 		pseudo = p;
 		score = 0;
+		level = 1;
 		nb++;
 		nbJoueur = nb;
 	}

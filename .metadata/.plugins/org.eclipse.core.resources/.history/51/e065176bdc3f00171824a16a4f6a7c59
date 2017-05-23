@@ -1,0 +1,419 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Calculette extends JFrame implements ActionListener{
+	
+	String[][] tabValeur = {{"7","8","9","/"},{"4","5","6","*"},{"1","2","3","-"},{".","0","=","+"}};
+	JButton[][] tabButton;
+	float compteur, operateur1, operateur2, operateurEnd;
+	boolean state0, stateOp1, stateOp2, stateEnd;
+	String op1, op2, plus, moins, fois, divise;
+	
+	JTextField valeur;
+	
+	public Calculette() {
+		super("Calculatrice");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		Container c = getContentPane();
+		c.setLayout(new BorderLayout());
+
+		valeur = new JTextField();
+		c.add(valeur, BorderLayout.NORTH);
+		
+		JPanel panelBouton = new JPanel(new GridLayout(4,4));
+		tabButton = new JButton[4][4];
+		
+		state0 = true;
+		stateOp1 = false;
+		stateOp2 = false;
+		stateEnd = false;
+		compteur = 0;
+		op1 = "";
+		op2 = "";
+		plus = "";
+		moins = "";
+		fois = "";
+		divise = "";
+		
+		for(int i=0;i<4;i++)
+			for(int j=0;j<4;j++)
+			{
+				tabButton[i][j] = new JButton(tabValeur[i][j]);
+				tabButton[i][j].addActionListener(this);
+				tabButton[i][j].setActionCommand(tabValeur[i][j]);
+				panelBouton.add(tabButton[i][j]);
+			}
+		c.add(panelBouton,BorderLayout.CENTER);
+		
+		disable();
+
+		pack();
+		setVisible(true);
+	}
+	
+	public void reinitialise(ActionEvent e)
+	{
+		
+		if(e.getActionCommand().equals("="))
+		{
+			compteur += 1;
+			if(compteur == 3)
+			{
+				state0 = true;
+				stateOp1 = false;
+				stateOp2 = false;
+				stateEnd = false;
+				compteur = 0;
+				op1 = "";
+				op2 = "";
+				valeur.setText("");
+			}
+			
+		}
+		else
+		{
+			compteur = 0;
+		}
+		
+		
+	}
+	
+	public String nombreGrand1(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+		case "1":
+			op1 += "1";
+			valeur.setText(op1);
+			break;
+		case "2":
+			op1 += "2";
+			valeur.setText(op1);
+			break;
+		case "3":
+			op1 += "3";
+			valeur.setText(op1);
+			break;
+		case "4":
+			op1 += "4";
+			valeur.setText(op1);
+			break;
+		case "5":
+			op1 += "5";
+			valeur.setText(op1);
+			break;
+		case "6":
+			op1 += "6";
+			valeur.setText(op1);
+			break;
+		case "7":
+			op1 += "7";
+			valeur.setText(op1);
+			break;
+		case "8":
+			op1 += "8";
+			valeur.setText(op1);
+			break;
+		case "9":
+			op1 += "9";
+			valeur.setText(op1);
+			break;
+		case ".":
+			op1 += ".";
+			valeur.setText(op1);
+			break;
+		case "0":
+			op1 += "0";
+			valeur.setText(op1);
+			break;
+		}
+		return op1;
+	}
+	
+	public String nombreGrand2(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+		case "1":
+			op2 += "1";
+			valeur.setText(op2);
+			break;
+		case "2":
+			op2 += "2";
+			valeur.setText(op2);
+			break;
+		case "3":
+			op2 += "3";
+			valeur.setText(op2);
+			break;
+		case "4":
+			op2 += "4";
+			valeur.setText(op2);
+			break;
+		case "5":
+			op2 += "5";
+			valeur.setText(op2);
+			break;
+		case "6":
+			op2 += "6";
+			valeur.setText(op2);
+			break;
+		case "7":
+			op2 += "7";
+			valeur.setText(op2);
+			break;
+		case "8":
+			op2 += "8";
+			valeur.setText(op2);
+			break;
+		case "9":
+			op2 += "9";
+			valeur.setText(op2);
+			break;
+		case ".":
+			op2 += ".";
+			valeur.setText(op2);
+			break;
+		case "0":
+			op2 += "0";
+			valeur.setText(op2);
+			break;
+		}
+		return op2;
+	}
+	
+	public void enable()
+	{
+		tabButton[0][3].setEnabled(true);
+		tabButton[1][3].setEnabled(true);
+		tabButton[2][3].setEnabled(true);
+		tabButton[3][2].setEnabled(true);
+		tabButton[3][3].setEnabled(true);
+	}
+	
+	public void disable()
+	{
+		tabButton[0][3].setEnabled(false);
+		tabButton[1][3].setEnabled(false);
+		tabButton[2][3].setEnabled(false);
+		tabButton[3][2].setEnabled(false);
+		tabButton[3][3].setEnabled(false);
+	}
+	
+	public void stateOperation1(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+		case "1":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "2":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "3":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "4":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "5":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "6":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "7":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "8":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		case "9":
+			state0 = false;
+			stateOp1 = true;
+			break;
+		}
+	}
+	
+	public void stateOperation2(ActionEvent e)
+	{
+		state0 = false;
+		stateOp1 = false;
+		stateOp2 = true;
+//		switch(e.getActionCommand())
+//		{
+//		case "0":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "1":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "2":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "3":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "4":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "5":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "6":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "7":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "8":
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		case "9":
+//			state0 = false;
+//			stateOp1 = false;
+//			stateOp2 = true;
+//			break;
+//		}
+	}
+
+	public float calcul(ActionEvent e)
+	{
+		System.out.println("op2"+operateur2+ "op1"+operateur1);
+		switch(e.getActionCommand())
+		{
+		case "+":
+			operateurEnd = operateur1 + operateur2;
+			valeur.setText(Float.toString(operateurEnd));
+			break;
+		case "-":
+			operateurEnd = operateur1 - operateur2;
+			valeur.setText(Float.toString(operateurEnd));
+			break;
+		case "*":
+			operateurEnd = operateur1 * operateur2;
+			valeur.setText(Float.toString(operateurEnd));
+			break;
+		case "/":
+			operateurEnd = operateur1 / operateur2;
+			valeur.setText(Float.toString(operateurEnd));
+			break;
+		}
+		return operateurEnd;
+	}
+	
+	public void actionPerformed(ActionEvent e) 
+	{
+		
+		if(state0)
+		{
+			disable();
+			reinitialise(e);
+		}
+		
+		if(e.getActionCommand().equals("0")||e.getActionCommand().equals("1")||e.getActionCommand().equals("2")||e.getActionCommand().equals("3")||e.getActionCommand().equals("4")||e.getActionCommand().equals("5")||e.getActionCommand().equals("6")||e.getActionCommand().equals("7")||e.getActionCommand().equals("8")||e.getActionCommand().equals("9"))
+		{
+			stateOperation1(e);
+		}
+		
+		if(stateOp1)
+		{
+			stateOperation1(e);
+			nombreGrand1(e);
+			enable();
+			reinitialise(e);
+			if(e.getActionCommand().equals("+")||e.getActionCommand().equals("-")||e.getActionCommand().equals("*")||e.getActionCommand().equals("/"))
+			{	
+				switch(e.getActionCommand())
+				{
+				case "+":
+					plus = e.getActionCommand();
+					break;
+				case "-":
+					moins = e.getActionCommand();
+					break;
+				case "/":
+					divise = e.getActionCommand();
+					break;
+				case "*":
+					fois = e.getActionCommand();
+					break;
+				}
+				
+				
+				System.out.println("coucou1");
+				operateur1 = Float.parseFloat(op1);
+				valeur.setText("");
+				System.out.println(operateur1);
+				stateOperation2(e);
+				System.out.println(stateOp2);
+			}
+		}
+		
+		if(stateOp2)
+		{
+			stateOperation2(e);
+			System.out.println("coucou");
+			nombreGrand2(e);
+			if(e.getActionCommand().equals("0")||e.getActionCommand().equals("1")||e.getActionCommand().equals("2")||e.getActionCommand().equals("3")||e.getActionCommand().equals("4")||e.getActionCommand().equals("5")||e.getActionCommand().equals("6")||e.getActionCommand().equals("7")||e.getActionCommand().equals("8")||e.getActionCommand().equals("9"))
+			{
+				operateur2 = Float.parseFloat(op2);
+				System.out.println(operateur2);
+			}
+			if(e.getActionCommand().equals("="))
+			{
+				calcul(e);
+				System.out.println("calcul"+ calcul(e));
+			}
+		}
+		
+	
+		
+		
+		
+	}
+
+	public static void main(String[] args) {
+		new Calculette();
+
+	}
+
+}
+

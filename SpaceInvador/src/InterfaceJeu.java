@@ -92,6 +92,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 					point += 1; // augmentation des points
 					score.setText(" | Score : " + point); // maj affichage en haut du panneau
 					majScore(); //maj du score
+					majLevel(); // maj du niveau
 				}
 				
 				repaint();
@@ -136,6 +137,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		selectJoueur().score = point;
 	}
 	
+	public void majLevel()
+	{
+		selectJoueur().level = level;
+	}
+	
 	public Joueur selectJoueur()
 	{
 		
@@ -154,7 +160,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		}
 		
 		iterJoueur = l.listeJoueur.listIterator();// re ini de la liste
-		//tant que le num�ro ne correspond pas � celui du joueur on continu de chercher
+		//tant que le numero ne correspond pas a celui du joueur on continu de chercher
 		while(iterJoueur.hasNext())
 		{
 			Joueur j;
