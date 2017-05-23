@@ -63,7 +63,5 @@ public class InterfaceClassement extends JFrame implements ActionListener
 			dispose(); // Le tableau de classement se ferme
 			new AjoutJoueur(jeu); // La fenêtre permettant d'ajouter un nouveau joueur s'ouvre
 		}
-		
 	}
-
 }

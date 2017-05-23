@@ -28,37 +28,39 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	{
 		super("Super Space Invaders");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		cptLevel = 0;
-		level = 1;
-		point = 0;
+		cptLevel = 0; // pour voir quand on change de niveau oup as
+		level = 1; // niveau
+		point = 0; // nombre de point de la partie
+		okButton = 1; // pour le bouton du game over
 		
-		ajoutJ = new AjoutJoueur(InterfaceJeu.this);
+		ajoutJ = new AjoutJoueur(InterfaceJeu.this); // popup qui va permettre l'ajout d'un jour
 		
-		/* Creation du container qui sera decouper en 3 lignes (explique plus bas)*/
+		/* Creation du container */
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
-//		c.setLayout(new GridLayout(3,1));
 		
 		/* Initialisation des JLabels*/
 		pseudo = new JLabel("Pseudo : ? ");
 		niveau = new JLabel("Niveau : " + level);
 		score = new JLabel(" | Score : " + point);
 		
-		/* Ini des lignes pour la mise en forme de la page, il y aura 3 lignes : une avec les 
-		 * JLabels, une avec le pnneau de jeu et la derniÃ¨re avec le classement */
+		/* 
+		 * Initialisation de tout les jLabel : niveau, score et pseudo */
 		JPanel panelAffichage = new JPanel();
 		panelAffichage.setLayout(new FlowLayout(FlowLayout.CENTER));
 		panelAffichage.add(pseudo);
 		panelAffichage.add(niveau);
 		panelAffichage.add(score);
+		c.add(panelAffichage,BorderLayout.NORTH);// on ajoute ce panel en haut
+		
+		// creation du panneau de jeu
 		panneau = new PanneauJeu();
-		c.add(panelAffichage,BorderLayout.NORTH);
+		c.add(panneau); // ajout du panneau de jeu
 		
 		l = new ListeJoueur();
-		okButton = 1;
 		
-		c.add(panneau);
-		
+		// timer qui va prendre en comtpe presque toutes les "actions" : monter/descentes des elements, si ils touchent les limites,
+		// si ils se rencontrent, si c'est la fin ect..
 		timerRefresh = new Timer(30, new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {
@@ -71,43 +73,52 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				// Si l'alien touche le vaisseau fin de la game
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
+					// on arrête les timer dans un premier temps sinon ils vont continuer à tourner
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
+					
+					// popup du message game over
 					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				}
 				if(okButton == 0) // si on appuis sur ok on afiche le classement
 				{
 					InterfaceClassement interC = new InterfaceClassement(InterfaceJeu.this);
-				    interC.classement.fireTableDataChanged();
-				    okButton = 1;
+				    interC.classement.fireTableDataChanged(); // maj du classement
+				    okButton = 1; // sinon le bouton vaut totu le temps 0 et ça spam d'interface
 				}
 				
-				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien et mise ï¿½ jour du score
+				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien et mise a jour du score
 				{
-					point ++;
-					score.setText(" | Score : " + point);
-					majScore();
+					point += 1; // augmentation des points
+					score.setText(" | Score : " + point); // maj affichage en haut du panneau
+					majScore(); //maj du score
 				}
 				
 				repaint();
 			}
 		});
 		
-		timerSpawnAlien = new Timer(1000, new ActionListener() 		
+		timerSpawnAlien = new Timer(1000, new ActionListener() // timer qui va s'occuper de la creation des alien	
 		{ 			
 			public void actionPerformed(ActionEvent e) 
 			{ 				
 				creationAlien(level);
 				repaint();
-				if(cptLevel < 10)
+				
+				/*
+				 * ici on va voir quand passer au niveau superieur. 
+				 * Chaque dix ligne qui apparait un niveau de plus est acquis.
+				 */
+				
+				if(cptLevel < 10) // si dix lignes ne sont pas passée on incremente le compteur de 1
 				{
 					cptLevel ++;
 				}
-				else
+				else // sinon il est à 10 du coup +1 lvl et le compteur retombe à 0
 				{ 
 					level ++;
 					cptLevel = 0;
-					niveau.setText("Niveau : " + level);
+					niveau.setText("Niveau : " + level); // maj du jLabel pour l'affichage en haut du panneau
 				}
 			} 		
 		});
@@ -119,6 +130,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		setVisible(true);
 	}
 	
+	// mise a jour du score
 	public void majScore()
 	{
 		selectJoueur().score = point;
@@ -127,18 +139,22 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	public Joueur selectJoueur()
 	{
 		
-		int max = 0;
+		int max = 0; // pour choisir le dernier numero de joueur donc le joueur actuel
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		
+		//Pour trouver le nb max
 		for(int i = 0; i < l.listeJoueur.size(); i ++)
 		{
 			Joueur j;
 			j = iterJoueur.next();
-			if(max < j.nbJoueur)
+			if(max < j.nbJoueur) // si on trouve un nb superieur au max alors maj du max
 			{
 				max = j.nbJoueur;
 			}
 		}
-		iterJoueur = l.listeJoueur.listIterator();
+		
+		iterJoueur = l.listeJoueur.listIterator();// re ini de la liste
+		//tant que le numéro ne correspond pas à celui du joueur on continu de chercher
 		while(iterJoueur.hasNext())
 		{
 			Joueur j;
@@ -152,6 +168,10 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		return null;
 	}
 	
+	/* Cette fonction permet de re initialiser le jeu entre deux parties, 
+	 * c'est a dire entre un joueur qui recommence ou l'arrivee d'un nouveau
+	 * joueur
+	 */
 	public void reset(int i)
 	{
 		timerRefresh.stop();
@@ -172,28 +192,27 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		repaint();
 	}
 	
+	// pour relancer les timers 
 	public void startTimer()
 	{
 		timerRefresh.start();
 		timerSpawnAlien.start();
 	}
 	
+	/* fonction qui va créer les alien, prends en compte le niveau pour
+	 * rajouter de la difficultées avec de plus en d'alien !
+	 * chaque deux niveaux il y a un nouvel ennemi a combattre..
+	 */
 	public void creationAlien(int level)
 	{
-		int nb = 0;
-		
-		if(level%2 == 0)
-		{
-			nb = level/2;
-		}
-		else{nb = (level/2);}
-		
-		if(nb > 9)
+		int nb = level/2;
+
+		if(nb > 9) // pour ne pas depacer dix alien
 		{
 			nb = 9;
 		}
 		
-		for(int i = 0; i <= nb; i++)
+		for(int i = 0; i <= nb; i++)// creation de tout nos alien !!
 		{
 			panneau.listeAlien.creerAlien(panneau.LARGEUR, level);
 		}
@@ -203,8 +222,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	{
 		boolean direction;
 		
-		/* je fais diffÃ©rent if pour que si le joueur appuit sur plusieurs touches elles puissent 
-		Ãªtre toutes testÃ©es */
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) // droite
 		{
 			direction = true;
@@ -219,7 +236,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 			panneau.normandy.testerBords();
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) // gauche
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) // espace
 		{
 			panneau.listeMissile.creerMissile(panneau.normandy.x, panneau.normandy);
 		}

@@ -15,6 +15,10 @@ public class PanneauJeu extends JComponent
 	public static final int LARGEUR = 500;
 	public static final int HAUTEUR = 800;
 	
+	/*
+	 * elements que le joueur verra dans le panneau de jeu :
+	 * les alien, les missiles et le vaisseau
+	 */
 	Ligne listeAlien;
 	Vaisseau normandy;
 	ListeMissile listeMissile;
@@ -22,8 +26,8 @@ public class PanneauJeu extends JComponent
 	
 	public PanneauJeu()
 	{
-		/* Ini du panneau avec une taille 400 (test) plus création des éléments présents  
-		 * initiallement dedans (ligne, vasseau) */
+		/* Ini du panneau avec les tailles definit plus creation des elements presents  
+		 * initiallement dedans (ligne, vasseau, missiles) */
 		super();
 		setPreferredSize(new Dimension(LARGEUR, HAUTEUR));
 		listeAlien = new Ligne();
@@ -32,6 +36,7 @@ public class PanneauJeu extends JComponent
 		
 	}
 	
+	// Graphisme du panneau
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
@@ -44,6 +49,7 @@ public class PanneauJeu extends JComponent
 		listeAlien.paint(g2);
 	}
 
+	// pour obtenir la hauteur du panneau
 	public int getHauteur()
 	{
 		return HAUTEUR;
