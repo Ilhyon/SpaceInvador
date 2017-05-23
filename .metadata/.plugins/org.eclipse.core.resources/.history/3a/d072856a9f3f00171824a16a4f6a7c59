@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 
-// Cette classe permet de créer une liste de joueur
 public class ListeJoueur {
 
 	ArrayList<Joueur> listeJoueur;
 	
-	//Constructeur
-	public ListeJoueur() 
-	{
+	public ListeJoueur() {
 		listeJoueur = new ArrayList<Joueur>();
+	}
+
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
