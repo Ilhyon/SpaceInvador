@@ -59,6 +59,9 @@ public class ListeMissile {
 				if(m.intersectMA(a) && a.r != 0)
 				{
 					a.r --;
+					suprimerMissile(m);
+					sup = true;
+					return true;
 				}
 					
 				
