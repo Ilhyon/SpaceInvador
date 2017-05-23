@@ -20,12 +20,11 @@ public class Alien extends Rectangle2D.Double
 	{
 		super(centreX, 0, COTE, COTE);
 		this.cptRobustesse = cptRobustesse;
-		r = 1; // de base la robustesse de l'alien est de 1
-		//Pour que les aliens prennent une épaisseur/robustesse random
 		if(cptRobustesse != 0)
 		{
 			r = new Random().nextInt(cptRobustesse) + 1;
 		}
+		System.out.println(r);
 		stroke = new BasicStroke(r);
 		
 	}
