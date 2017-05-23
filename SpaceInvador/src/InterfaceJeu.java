@@ -36,7 +36,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		super("Super Space Invaders");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		cptLevel = 0;
-		level = 0;
+		level = 1;
 		point = 0;
 		
 		ajoutJ = new AjoutJoueur(InterfaceJeu.this);
@@ -72,31 +72,30 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
 				
-				panneau.listeMissile.testerPlancher(0);
+				panneau.listeMissile.testerPlancher(0); // test si les missiles sorte du panneau
 				
-				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()-200))
-				panneau.normandy.testerBords();
 				
+				// Si l'alien touche le vaisseau fin de la game
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
 					okButton = JOptionPane.showOptionDialog(InterfaceJeu.this, "Game Over !", "Fin du game", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 				}
-				if(okButton == 0)
+				if(okButton == 0) // si on appuis sur ok on afiche le classement
 				{
 					InterfaceClassement interC = new InterfaceClassement(InterfaceJeu.this);
 				    interC.classement.fireTableDataChanged();
 				    okButton = 1;
 				}
-				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien
+				
+				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien et mise à jour du score
 				{
 					point ++;
 					score.setText(" | Score : " + point);
 					majScore();
 				}
 				
-				panneau.listeMissile.intersectWithAlien(panneau.listeAlien);
 				repaint();
 				
 					
@@ -196,7 +195,18 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void creationAlien(int cptRobustesse)
 	{
-		int nb = 1;
+		int nb = 0;
+		
+		if(level%2 == 0)
+		{
+			nb = level/2;
+		}
+		else{nb = (level/2);}
+		
+		if(nb > 9)
+		{
+			nb = 9;
+		}
 		
 		for(int i = 0; i <= nb; i++)
 		{
