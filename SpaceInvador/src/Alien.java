@@ -10,24 +10,22 @@ public class Alien extends Rectangle2D.Double
 	
 	private static final int PAS = 2;
 	public static final int COTE = 40;
-	int cptRobustesse, r;
+	int r;
 	Stroke stroke;
 	
 	
 	
 	// constructeur
-	public Alien(int centreX, int cptRobustesse)
+	public Alien(int centreX, int level)
 	{
 		super(centreX, 0, COTE, COTE);
-		this.cptRobustesse = cptRobustesse;
 		r = 1; // de base la robustesse de l'alien est de 1
 		//Pour que les aliens prennent une épaisseur/robustesse random
-		if(cptRobustesse != 0)
+		if(level != 0)
 		{
-			r = new Random().nextInt(cptRobustesse) + 1;
+			r = new Random().nextInt(level) + 1;
 		}
 		stroke = new BasicStroke(r);
-		
 	}
 	
 	public Alien()

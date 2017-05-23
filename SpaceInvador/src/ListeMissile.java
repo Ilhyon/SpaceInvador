@@ -3,12 +3,10 @@ import java.util.*;
 
 public class ListeMissile {
 	ArrayList<Missile> listeMissilesAffiches;
-	int nbIntersectMA; // nb intersection missile-alien
 	
 	public ListeMissile()
 	{
 		listeMissilesAffiches = new ArrayList<Missile>();
-		nbIntersectMA = 0;
 	}
 	
 	public void creerMissile(double longueur, Vaisseau v)
@@ -58,16 +56,18 @@ public class ListeMissile {
 				a = iterAlien.next();
 				
 				//Si il y a intersection, ça incrémente
-				if(m.intersectMA(a))
-					nbIntersectMA ++;
+				if(m.intersectMA(a) && a.r != 0)
+				{
+					a.r --;
+				}
+					
 				
 				// si le nombre d'intersection =  à la robustesse de l'alien
 				// alors ça supprime l'alien et le missile, et ça remet le compteut à 0
-				if(nbIntersectMA == a.r)
+				if(a.r == 0)
 				{
 					l.supprimerAlien(a); 
 					suprimerMissile(m);
-					nbIntersectMA = 0;
 					sup = true;
 					return true;
 				}

@@ -26,7 +26,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	JLabel pseudo, niveau, score; // Affichage de ces elements en haut de la page
 	PanneauJeu panneau; // Panneau du jeu
 	Timer timerRefresh, timerSpawnAlien;
-	int okButton, cptLevel, level, point, cptRobustesse;
+	int okButton, cptLevel, level, point;
 	ListeJoueur l;
 	AjoutJoueur ajoutJ;
 	
@@ -38,7 +38,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		cptLevel = 0;
 		level = 0;
 		point = 0;
-		cptRobustesse = 0;
 		
 		ajoutJ = new AjoutJoueur(InterfaceJeu.this);
 		
@@ -90,7 +89,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				    interC.classement.fireTableDataChanged();
 				    okButton = 1;
 				}
-				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien))
+				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien
 				{
 					point ++;
 					score.setText(" | Score : " + point);
@@ -108,7 +107,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		{ 			
 			public void actionPerformed(ActionEvent e) 
 			{ 				
-				creationAlien(cptRobustesse);
+				creationAlien(level);
 				repaint();
 				if(cptLevel < 10)
 				{
@@ -117,7 +116,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				else
 				{ 
 					level ++;
-					cptRobustesse ++;
 					cptLevel = 0;
 					niveau.setText("Niveau : " + level);
 				}
@@ -198,15 +196,6 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void creationAlien(int cptRobustesse)
 	{
-//		int nb = 5;
-//		if(data.score>0)
-//		{
-//			nb = 5;
-//		}
-//		else if(score > 3)
-//		{
-//			nb = 7;
-//		}
 		int nb = 1;
 		
 		for(int i = 0; i <= nb; i++)
