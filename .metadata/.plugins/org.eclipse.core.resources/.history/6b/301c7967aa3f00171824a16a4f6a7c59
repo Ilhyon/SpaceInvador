@@ -65,7 +65,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				panneau.listeMissile.monterMissile();
 				panneau.listeAlien.descendreAliens();
 				
-				panneau.listeMissile.testerPlafond(0); // test si les missiles sorte du panneau
+				panneau.listeMissile.testerPlancher(0); // test si les missiles sorte du panneau
 				
 				
 				// Si l'alien touche le vaisseau fin de la game
@@ -90,6 +90,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				}
 				
 				repaint();
+				
+					
 			}
 		});
 		
@@ -121,32 +123,32 @@ public class InterfaceJeu extends JFrame implements KeyListener
 	
 	public void majScore()
 	{
-		selectJoueur().score = point;
+		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
+		while(iterJoueur.hasNext())
+		{
+			Joueur j = new Joueur();
+			j = iterJoueur.next();
+			if(j.pseudo == this.pseudo.getText() )
+			{
+				j.score = point;
+			}
+		}
 	}
 	
 	public Joueur selectJoueur()
 	{
-		
-		int max = 0;
 		ListIterator<Joueur> iterJoueur = l.listeJoueur.listIterator();
-		for(int i = 0; i < l.listeJoueur.size(); i ++)
-		{
-			Joueur j;
-			j = iterJoueur.next();
-			if(max < j.nbJoueur)
-			{
-				max = j.nbJoueur;
-			}
-		}
-		iterJoueur = l.listeJoueur.listIterator();
 		while(iterJoueur.hasNext())
 		{
-			Joueur j;
+			Joueur j = new Joueur();
 			j = iterJoueur.next();
-			
-			if(max == j.nbJoueur)
+			if(j.pseudo == this.pseudo.getText() )
 			{
 				return j;
+			}
+			else
+			{
+				return null;
 			}
 		}
 		return null;
@@ -159,9 +161,15 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		
 		score.setText(" | Score : 0");
 		
+		if(i == 1)// on recommence donc il faut remettre le score du joueur a 0
+		{
+			selectJoueur().score = 0;
+			
+		}
+		
 		point = 0;
 		niveau.setText("Niveau : 0 ");
-		level = 1;
+		level = 0;
 		cptLevel = 0;
 		
 		panneau.listeAlien.listeAlien.clear();

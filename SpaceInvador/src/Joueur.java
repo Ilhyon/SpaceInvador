@@ -1,4 +1,4 @@
-/** Permet de stocker les information sur un joueur*/
+// Cette classe permet de créer un joueur
 public class Joueur {
 	String pseudo; // pseudo du joueur
 	int score, nbJoueur; // son score

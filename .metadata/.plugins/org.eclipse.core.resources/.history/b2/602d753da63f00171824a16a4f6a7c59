@@ -1,0 +1,84 @@
+import java.awt.Graphics2D;
+import java.util.*;
+
+// Cette classe permet de creer chaque ligne du jeu
+public class Ligne {
+	
+	int nbAlien; // nombre d'alien
+	ArrayList<Alien> listeAlien; // liste d'alien
+	
+	// Constructeur
+	public Ligne()
+	{
+		nbAlien = 0;
+		listeAlien = new ArrayList<Alien>();
+		
+	}
+	
+	// Pour creer un alien
+	public void creerAlien(int longueur, int level)
+	{	
+		// Si la liste n'est pas vide alors
+		if(listeAlien.size() > 0)
+		{
+			Random rAlien = new Random(); // nombre aleatoire
+			int x = rAlien.nextInt(10); // Entier alatoire entre 0 et 10 ppur positionner aleatoirement l'alien
+			x = x*50;
+			Alien a = new Alien(x, level);
+			while(intersect(a))
+			{
+				x = rAlien.nextInt(10);
+				x = x*50;
+				a = new Alien(x, level);
+			}
+			listeAlien.add(a);
+		}
+		else
+		{
+			Random rAlien = new Random();
+			int x = rAlien.nextInt(10);
+			x = x*50;
+			Alien a = new Alien(x, level);
+			listeAlien.add(a);
+		}
+		
+	}
+	
+	public boolean intersect(Alien a)
+	{
+		ListIterator<Alien> iterAlien = listeAlien.listIterator();
+		while(iterAlien.hasNext())
+			if(iterAlien.next().intersectAA(a))
+				return true;
+		return false;
+	}
+	
+	public void supprimerAlien(Alien a)
+	{
+		listeAlien.remove(a);
+	}
+	
+	public void descendreAliens()
+	{
+		ListIterator<Alien> iterAlien = listeAlien.listIterator();
+		while(iterAlien.hasNext())
+			iterAlien.next().descendre();
+	}
+
+	
+	public boolean testerPlancher(int hauteur)
+	{
+		ListIterator<Alien> iterAlien = listeAlien.listIterator();
+		while(iterAlien.hasNext())
+			if(iterAlien.next().getY()+Alien.COTE > hauteur)
+				return true;
+		return false;
+	}
+	
+	public void paint(Graphics2D g2)
+	{
+		ListIterator<Alien> iterAlien = listeAlien.listIterator();
+		while(iterAlien.hasNext())
+			iterAlien.next().paint(g2);
+	}
+}

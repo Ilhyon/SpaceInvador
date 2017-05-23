@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-// Cette classe permet de creer un Vaisseau et ses methodes associees
 public class Vaisseau extends Rectangle2D.Double{
 	
 	private static final int LONGUEUR = 50;

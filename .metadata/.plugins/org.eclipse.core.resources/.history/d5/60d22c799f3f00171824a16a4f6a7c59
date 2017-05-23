@@ -5,7 +5,6 @@ import java.awt.Stroke;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-// Cette classe permet de creer un Alien avec ses methodes associees
 public class Alien extends Rectangle2D.Double
 {
 	
@@ -21,11 +20,11 @@ public class Alien extends Rectangle2D.Double
 		super(x, 0, COTE, COTE);
 		// Pour que les Aliens prennent une robustesse random
 		// en fonction du niveau : genre si niveau 5
-		// l'alien sera soit de robustesse 1,2,3,4,5 aleatoirement
+		// l'alien sera soit de robustesse 1,2,3,4,5 aléatoirement
 		r = new Random().nextInt(level) + 1;
 		
-		// La robustesse est représentee par l'epaisseur du contour
-		// Chaque alien possede sa propre robustesse
+		// La robustesse est représentée par l'épaisseur du contour
+		// Chaque alien possède sa propre robustesse
 		stroke = new BasicStroke(r);
 	}
 	
