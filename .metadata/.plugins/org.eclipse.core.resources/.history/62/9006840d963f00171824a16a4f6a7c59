@@ -194,13 +194,13 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		timerSpawnAlien.start();
 	}
 	
-	public void creationAlien(int level)
+	public void creationAlien(int cptRobustesse)
 	{
 		int nb = 1;
 		
 		for(int i = 0; i <= nb; i++)
 		{
-			panneau.listeAlien.creerAlien(panneau.LARGEUR, level);
+			panneau.listeAlien.creerAlien(panneau.LARGEUR, cptRobustesse);
 		}
 	}
 	

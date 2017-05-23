@@ -5,27 +5,29 @@ public class Ligne {
 	
 	int nbAlien;
 	ArrayList<Alien> listeAlien;
+	Alien a;
 	
 	public Ligne()
 	{
 		nbAlien = 0;
 		listeAlien = new ArrayList<Alien>();
+		a = new Alien();
 		
 	}
 	
-	public void creerAlien(int longueur, int level)
+	public void creerAlien(int longueur, int cptRobustesse)
 	{
 		if(listeAlien.size()>0)
 		{
 			Random rAlien = new Random();
 			int x = 0 + rAlien.nextInt(10 - 0);
 			x = x*50;
-			Alien a = new Alien(x, level);
+			a = new Alien(x, cptRobustesse, a.r);
 			while(intersect(a))
 			{
 				x = 0 + rAlien.nextInt(10 - 0);
 				x = x*50;
-				a = new Alien(x, level);
+				a = new Alien(x, cptRobustesse, a.r);
 			}
 			listeAlien.add(a);
 		}
@@ -34,7 +36,7 @@ public class Ligne {
 			Random rAlien = new Random();
 			int x = 0 + rAlien.nextInt(10 - 0);
 			x = x*50;
-			Alien a = new Alien(x, level);
+			a = new Alien(x, cptRobustesse, a.r);
 			listeAlien.add(a);
 		}
 		
