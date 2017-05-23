@@ -22,13 +22,10 @@ public class ListeMissile {
 		// Tant que les missiles se chevauchent 
 		while(intersect(m))
 		{
-			// On supprime le dernier element
 			x = v.getX() + v.getWidth()/2; // Se creer au centre du vaisseau
 			y = v.getY() + 5; // se creer au dessus de l'autre
 			m = new Missile(x, y); // creation missile
 			listeMissilesAffiches.remove(listeMissilesAffiches.size() - 1); // On supprime le dernier alien de la liste
-			
-			
 		}
 		listeMissilesAffiches.add(m); // On ajoute l'alien à la liste
 		
@@ -70,19 +67,15 @@ public class ListeMissile {
 					a.r --; // Alors la robustesse de l'alien diminue
 					a.stroke = new BasicStroke(a.r); // l'epaisseur du contour de l'alien diminue
 					suprimerMissile(m);// Le missile se supprime
+					// SI la robustesse passe à 0
+					if(a.r == 0)
+					{
+						l.supprimerAlien(a); // on supprime les aliens
+					}
 					sup = true; // le booleen devient true
 					return true; // cela renvoie true
 				}
-					
-				
-				// Si la robustesse de l'alien vaut 0
-				if(a.r == 0)
-				{
-					l.supprimerAlien(a); // Alors l'alien se supprime
-					suprimerMissile(m); // le missile se supprime
-					sup = true; // le booleen devient true
-					return true; // cela renvoie true
-				}
+	
 			}
 		}
 		return false; // sinon cela renvoie false

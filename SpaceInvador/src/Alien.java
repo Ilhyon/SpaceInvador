@@ -19,6 +19,7 @@ public class Alien extends Rectangle2D.Double
 	{
 		// coordonnées x, y, largeur, hauteur
 		super(x, 0, COTE, COTE);
+		
 		// Pour que les Aliens prennent une robustesse random
 		// en fonction du niveau : genre si niveau 5
 		// l'alien sera soit de robustesse 1,2,3,4,5 aleatoirement

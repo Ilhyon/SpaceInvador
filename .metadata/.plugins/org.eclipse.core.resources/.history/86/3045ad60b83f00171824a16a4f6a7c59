@@ -1,0 +1,32 @@
+
+public class SimpleClient {
+
+	public class SimpleClient()
+	{
+		ArrayList<Produit> ListProduits;
+		String produit;
+
+		public SimpleClient()
+		{
+			ListProduits = new ArrayList<Produit>();
+			System.out.println("Veuillez saisir un produit : ");
+			String produit = sc.nextLine();
+		}
+
+		public void ajouteProduit(Produit p)
+		{
+			System.out.println("Veuillez saisir un produit à ajouter : ")
+			String produit = sc.nextLine();
+			ListProduits.add(p);
+		}
+
+		public float prixChariot()
+		{
+			for(int i = 0; i <= ListProduits.size(); i++)
+			{
+
+			}
+		}
+	}
+
+}

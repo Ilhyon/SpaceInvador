@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SimpleClient {
+	
+	ArrayList<Produit> ListProduits;
+	Produit p;
+	int quantite;
+	Scanner sc;
+	int somme;
+	
+
+	public SimpleClient()
+	{
+//		sc = new Scanner(System.in);
+//		System.out.println("Veuillez saisir une quantite :");
+		quantite = 0;
+		p = new Produit(p, quantite);
+		ListProduits = new ArrayList<Produit>();
+		somme = 0;
+	}
+
+	public void ajouteProduit(Produit p)
+	{
+		ListProduits.add(p);
+		System.out.println(p.prix);
+	}
+
+	public float prixChariot()
+	{
+			somme += (p.prix*p.quantite) - p.reduc;
+		return somme;
+	}
+	
+	public static void main(String[] args) {
+		SimpleClient s = new SimpleClient();
+		Produit tomate = new Produit("Tomate", 2, 4, 3, 1);
+		Produit salade = new Produit("Salade", 3, 5, 2, 0);
+		s.ajouteProduit(salade);
+		s.ajouteProduit(tomate);
+		System.out.println(s.prixChariot());
+		
+	}
+}
+

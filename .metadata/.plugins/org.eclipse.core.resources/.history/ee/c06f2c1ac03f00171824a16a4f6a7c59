@@ -1,0 +1,69 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
+import java.awt.geom.Rectangle2D;
+import java.util.Random;
+
+// Cette classe permet de creer un Alien avec ses methodes associees
+public class Alien extends Rectangle2D.Double
+{
+	
+	private static final int PAS = 2;
+	public static final int COTE = 40;
+	int r; // robustesse
+	Stroke stroke;
+	
+	// Constructeur 
+	public Alien(int x, int level)
+	{
+		// coordonnées x, y, largeur, hauteur
+		super(x, 0, COTE, COTE);
+		r = 0;
+		if(level != 1)
+			 
+	    {
+	 
+	      r = new Random().nextInt(level) + 1;
+	 
+	    }
+	 
+
+		
+		// Pour que les Aliens prennent une robustesse random
+		// en fonction du niveau : genre si niveau 5
+		// l'alien sera soit de robustesse 1,2,3,4,5 aleatoirement
+		//r = new Random().nextInt(level) + 1;
+		
+		// La robustesse est représentee par l'epaisseur du contour
+		// Chaque alien possede sa propre robustesse
+		stroke = new BasicStroke(r);
+	}
+	
+	// Constructeur par defaut
+	public Alien()
+	{
+		super();
+	}
+	
+	//Intersection entre un alien et un alien
+	public boolean intersectAA(Alien a)
+	{
+		return intersects(a.getBounds2D());
+	}
+	
+	// Pour faire descendre l'alien
+	public void descendre()
+	{
+		super.y += PAS;
+	}
+	
+	//Graphisme de l'alien
+	public void paint(Graphics2D g2)
+	{
+		g2.setStroke(stroke);
+		g2.setColor(Color.GREEN);
+		g2.draw(this);
+	}
+	
+}

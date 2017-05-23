@@ -73,7 +73,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				// Si l'alien touche le vaisseau fin de la game
 				if(panneau.listeAlien.testerPlancher(panneau.getHauteur()- panneau.normandy.getHAUTEUR()))
 				{
-					// on arrête les timer dans un premier temps sinon ils vont continuer à tourner
+					// on arrete les timer dans un premier temps sinon ils vont continuer a tourner
 					timerRefresh.stop();
 					timerSpawnAlien.stop();
 					
@@ -84,7 +84,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				{
 					InterfaceClassement interC = new InterfaceClassement(InterfaceJeu.this);
 				    interC.classement.fireTableDataChanged(); // maj du classement
-				    okButton = 1; // sinon le bouton vaut totu le temps 0 et ça spam d'interface
+				    okButton = 1; // sinon le bouton vaut tout le temps 0 et ca spam d'interface
 				}
 				
 				if(panneau.listeMissile.intersectWithAlien(panneau.listeAlien)) // si collision supression alien et mise a jour du score
@@ -110,11 +110,11 @@ public class InterfaceJeu extends JFrame implements KeyListener
 				 * Chaque dix ligne qui apparait un niveau de plus est acquis.
 				 */
 				
-				if(cptLevel < 10) // si dix lignes ne sont pas passée on incremente le compteur de 1
+				if(cptLevel < 10) // si dix lignes ne sont pas passee on incremente le compteur de 1
 				{
 					cptLevel ++;
 				}
-				else // sinon il est à 10 du coup +1 lvl et le compteur retombe à 0
+				else // sinon il est a 10 du coup +1 lvl et le compteur retombe a 0
 				{ 
 					level ++;
 					cptLevel = 0;
@@ -154,7 +154,7 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		}
 		
 		iterJoueur = l.listeJoueur.listIterator();// re ini de la liste
-		//tant que le numéro ne correspond pas à celui du joueur on continu de chercher
+		//tant que le numï¿½ro ne correspond pas ï¿½ celui du joueur on continu de chercher
 		while(iterJoueur.hasNext())
 		{
 			Joueur j;
@@ -199,8 +199,8 @@ public class InterfaceJeu extends JFrame implements KeyListener
 		timerSpawnAlien.start();
 	}
 	
-	/* fonction qui va créer les alien, prends en compte le niveau pour
-	 * rajouter de la difficultées avec de plus en d'alien !
+	/* fonction qui va creer les alien, prends en compte le niveau pour
+	 * rajouter de la difficultees avec de plus en d'alien !
 	 * chaque deux niveaux il y a un nouvel ennemi a combattre..
 	 */
 	public void creationAlien(int level)

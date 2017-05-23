@@ -1,0 +1,336 @@
+import java.util.Scanner;
+
+public static void main(String[] args) { 
+	// point de départ du programme java.
+
+	// commentaire uniligne
+	/*
+	commentaire multiligne
+	*/
+
+	System.out.print("Hello World !");	
+	/* System : appel de la classe qui se nomme System.
+	C'est une classe utilitaire qui permet surtout d'utiliser
+	l'enttrée et la sortie standard ie la saisie clavier 
+	et l'affichage écran.
+
+	out : objet de la classe Systeme ui gère la sortie standard
+	*/ 
+
+	System.out.print("Hello World ! \n");
+	System.out.println("My name is");
+	System.out.println("\nCysboy");
+	// retour à la ligne avec \n ou println
+
+	// \r insère un retour chariot
+	// \t tabulation
+
+	/* Les fichiers contenant le code source de vos programmes Java 
+	ont l'extension.java.
+	Les fichiers précompilés correspondant à vos codes source Java 
+	ont l'extension.class.
+	Le byte code est un code intermédiaire entre celui de votre programme 
+	et celui que votre machine peut comprendre --> JVM = coeur de Java.
+	Tous les programmes Java sont composés d'au moins une classe.
+	*/
+
+	/* Variables en Java :
+	-  simple ou primitif = nombre entier, réel, booléen ou caractère
+	-  complexe ou objet
+	*/
+
+	byte temperature; // 1 octet entier entre -128 et +127
+	temperature = 64;
+
+	short vitesseMax; // 2 octets entier entre -32768 et +32767
+	vitesseMax = 32000; 
+
+	int temperatureSoleil; // 8 octets entier entre -2*109 et +2*109
+	temperatureSoleil = 15600000;
+
+	long anneeLumiere; // ++ octets entier entre -9*10^18 et +9*10^18
+	anneeLumiere = 9460700000000000L; // L obligatoire à la fin
+
+	float pi; // flottant
+	pi = 3.141592653f; // toujours suivi de f
+	
+	float nombre;
+	nombre = 2.0f // ne pas oublier .0
+
+	char caractere; // Un seul caractère
+	caractere = 'A';
+
+	boolean question; // booléen
+	question = true;
+
+	// string = variable complexe/objet
+
+	//Première méthode de déclaration
+	String phrase; // toujours avec une majuscule
+	phrase = "Titi et Grosminet"; // double quote
+
+	//Deuxième méthode de déclaration
+	String str = new String();
+	str = "Une autre chaîne de caractères";
+
+	//Troisième méthode de déclaration
+	String string = "Une autre chaîne";
+
+	//Quatrième méthode de déclaration
+	String chaine = new String("Et une de plus !");
+
+	// plusieurs variables d'un même type :
+	int nbre1 = 2, nbre2 = 3, nbre3 = 0;
+
+	// raccourcit
+	nbre1 = nbre1 + 1;
+	nbre1 += 1;
+	nbre1++;
+	++nbre1;
+	
+	nbre1 = nbre1 - 1;
+	nbre1 -= 1;
+	nbre1--;
+	--nbre1;
+	
+	nbre1 = nbre1 * 2;
+	nbre1 *= 2;
+	nbre1 = nbre1 / 2;
+	nbre1 /= 2;
+	
+	double nbre1 = 10, nbre2 = 3; // double ets plus grand que int
+	int resultat = (int)(nbre1 / nbre2);
+	System.out.println("Le résultat est = " + resultat);
+
+	// conversion ou cast
+	// int en float
+	int i = 123;
+	float j = (float)i;
+
+	// int en double
+	int i = 123;
+	double j = (double)i;
+
+	// inversement
+	double i = 1.23;
+	double j = 2.999999999;
+	int k = (int)i;		//k vaut 1
+	k = (int)j;			//k vaut 2j;	
+
+	// int en string
+	int i = 12;
+	String j = new String();
+	j = j.valueOf(i);
+	// string en int
+	int k = Integer.valueOf(j).intValue();
+
+	double nombre = 1000000000000d; // cast en d
+	//Peut s'écrire ainsi
+	double nombre = 1____000____000___000_000d; // cast en d
+	//Le nombre d'underscore n'a pas d'importance
+
+	//Voici quelques autres exemple d'utilisation
+	int entier = 32_000;
+	double monDouble = 12_34_56_78_89_10d; // cast en d
+	double monDouble2 = 1234_5678_8910d;   // cast en d
+
+	// Expressions numériques en hexadécimal, en utilisant le préfixe « 0x » :
+	int entier = 255; //Peut s'écrire « int entier = 0xFF; »
+	int entier = 20; //Peut s'écrire « int entier = 0x14; »
+	int entier = 5112; //Peut s'écrire « int entier = 0x13_F8; »
+
+	// Notion binaire, en utilisant le préfixe "0b" :
+	int entier = 0b1111_1111; //Est équivalent à : « int entier = 255; »
+	int entier = 0b1000_0000_0000; //Est équivalent à : « int entier = 2048; »
+	int entier = 0b100000000000; //Est équivalent à : « int entier = 2048; »
+
+	// objet de type Scanner
+	Scanner sc = new Scanner(System.in) // entrée standard
+
+	// Pour que Java récupère ce que j'ai saisi pour l'afficher (input en python)
+	System.out.println("Veuillez saisir un mot :");
+	String str = sc.nextLine(); // pour lire du texte
+	System.out.println("Vous avez saisi : " + str);
+
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Veuillez saisir un nombre :");
+	int str = sc.nextInt(); // pour lire un entier
+	System.out.println("Vous avez saisi le nombre : " + str);
+
+	Scanner sc = new Scanner(System.in);
+	int i = sc.nextInt();
+	double d = sc.nextDouble();
+	long l = sc.nextLong();
+	byte b = sc.nextByte();
+	//Etc.
+
+	// pour un caractère :
+	System.out.println("Saisissez une lettre :");
+	Scanner sc = new Scanner(System.in);
+	String str = sc.nextLine();
+	char carac = str.charAt(0); // pour récupérer le 1er caractère saisi
+	System.out.println("Vous avez saisi le caractère : " + carac);
+
+	// && = ET
+	// || = OU
+	// ? opérateur ternaire
+
+	// switch pour éviter else if à répétition
+	switch (/*Variable*/)
+	{
+	  case /*Argument*/:
+		/*Action*/;
+		break;		
+	  default:
+		/*Action*/; 
+	} 
+
+	// exemple
+	int note = 10; //On imagine que la note maximale est 20
+
+	switch (note)
+	{
+	  case 0:
+		System.out.println("Ouch !");
+		break;
+	  case 10:
+		System.out.println("Vous avez juste la moyenne.");
+		break;
+	  case 20:
+		System.out.println("Parfait !");
+		break;
+	  default:
+		System.out.println("Il faut davantage travailler."); 
+	}
+
+	// Condition ternaire
+	int x = 10, y = 20;
+	int max = (x < y) ? y : x ; //Maintenant, max vaut 20
+	// si x est bien inférieur à y la valeur qui se trouve après 
+	// le ? sera affectée, max = y.
+	// si la condition est vrai cela fait ce qu'il y a après ?
+	// sinon max prend la valeur après le : donc x.
+
+	// condition ternaire dans une condition ternaire
+	max = (x < y) ? ((y < 10) ? y % 10 : y * 2) : x ; //Max vaut 40
+
+	// Les boucles
+
+	// while
+	while(/*Condition*/)
+	{
+		//Instruction à répéter
+	}
+
+	//Une variable vide
+	String prenom;
+	//On initialise celle-ci à O pour oui
+	char reponse = 'O';
+	//Notre objet Scanner, n'oubliez pas l'import de java.util.Scanner !
+	Scanner sc = new Scanner(System.in);
+	//Tant que la réponse donnée est égale à oui…
+	while (reponse == 'O')
+	{
+	  //On affiche une instruction
+	  System.out.println("Donnez un prénom : ");
+	  //On récupère le prénom saisi
+	  prenom = sc.nextLine();
+	  //On affiche notre phrase avec le prénom
+	  System.out.println("Bonjour " +prenom+ ", comment vas-tu ?");
+	  //On demande si la personne veut faire un autre essai
+	  System.out.println("Voulez-vous réessayer ? (O/N)");
+	  //On récupère la réponse de l'utilisateur
+	  reponse = sc.nextLine().charAt(0);
+	}
+	 
+	System.out.println("Au revoir…");
+	//Fin de la boucle
+
+	// for
+	for(int i = 0, j = 2; (i < 10 && j < 6); i++, j+=2){
+  		System.out.println("i = " + i + ", j = " + j);
+
+  	// TABLEAU
+
+  	<type du tableau> <nom du tableau> [] = { <contenu du tableau>};
+
+  	int tableauEntier[] = {0,1,2,3,4,5,6,7,8,9};
+	double tableauDouble[] = {0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0};
+	char tableauCaractere[] = {'a','b','c','d','e','f','g'};
+	String tableauChaine[] = {"chaine1", "chaine2", "chaine3" , "chaine4"};
+
+	// tableau vide
+	int tableauEntier[] = new int[6];
+
+	// tableau multidimentionnel
+	int premiersNombres[][] = {0,2,4,6,8}{1,3,5,7,9};
+
+	premiersNombres[i][j]
+
+	// afficher une case du tableau
+	System.out.println(tableauCaractere[0]);
+
+	// afficher un tableau en entier
+	for (int i = 0; i < tableauCaractere.length; i++)
+	{
+		System.out.println("A l'emplacement " + i +" du tableau, nous avons = " + tableauCaractere[i]);
+	}
+
+	// autre syntaxe boucle ofr pour parcourir tableau
+	String tab[] = {"toto", "titi", "tutu", "tete", "tata"};
+	 
+	for(String str : tab)
+	  System.out.println(str);
+
+	// différente méthodde = fonction
+	toLowerCase(); // majuscule en minuscule
+	toUpperCase(); // minuscule en majuscule
+	length(); // longueur 
+	equals(); // vérif si deux chaines sont identiques
+	charAt(); // extraction de caractères
+	substring(1er caractère, dernier caractère); // extrait parti d'un chaine de caraacteres
+	indexOf(); // explore en partant du début une chaine de caractère à la recherche d'une autre cahine de caractère et renvoie l'index
+	lastIndexOf(); // explore en partant de la fin
+	Math.random(); // nb aléatoire
+	Math.sin() // sinus
+	Math.abs() // valeur abslue
+	Math.pow(variable, puissance) // exposant
+
+	// METHODE
+	public // definit la portée de la méthode
+	static //
+	void // méthode qui ne renvoie rien
+	main //
+
+	// exemple de méthode pour parcourir un tableau
+
+	public class Sdz1
+	{
+	  public static void main(String[] args)
+	  {
+	    String[] tab = {"toto", "tata", "titi", "tete"};
+	    parcourirTableau(tab); 
+	  }
+	 
+	  static void parcourirTableau(String[] tabBis)
+	  {
+	    for(String str : tabBis)
+	      System.out.println(str);
+	  }
+	}
+
+	// Parcourir tableau double
+	static void parcourirTableau(String[][] tab, int i)
+	{
+	  for(String tab2[] : tab)
+	  {
+	    for(String str : tab2)
+	      System.out.println(str);
+	  }
+
+	/*les constructeurs → méthodes servant à créer des objets ;
+	les accesseurs → méthodes servant à accéder aux données des objets ;
+	les méthodes d'instance → méthodes servant à la gestion des objets.*/
+}
+
+}

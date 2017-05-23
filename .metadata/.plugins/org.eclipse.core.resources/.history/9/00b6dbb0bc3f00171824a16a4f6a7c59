@@ -1,0 +1,56 @@
+
+public class Produit {
+
+	String nom;
+	int code, quantite;
+	float prix, reduc;
+
+	public Produit(String nom, int code, int quantite, float prix, float reduc)
+	{
+		this.nom = nom;
+		this.code = code;
+		this.quantite = quantite;
+		this.prix = prix;
+		this.reduc = reduc;
+	}
+
+	public Produit(Produit p, int nb)
+	{
+		this.nom = nom;
+		this.code = code;
+		this.quantite = nb;
+		this.prix = prix;
+		this.reduc = reduc;
+	}
+
+	public void ajouteQuantite(int nb)
+	{
+		quantite += nb;
+	}
+
+	public void retireQuantite(int nb)
+	{
+		if(nb <= quantite)
+		{
+			quantite -= nb;
+		}
+	}
+
+	public String toString()
+	{
+		StringBuffer buf = new StringBuffer();
+
+		buf.append("Nom : ");
+		buf.append(nom);
+		buf.append(" | Identifiant : ");
+		buf.append(code);
+		buf.append(" | Quantite : ");
+		buf.append(quantite);
+		buf.append(" | Prix : ");
+		buf.append(prix);
+		buf.append(" | Réduction : ");
+
+		return buf.toString();
+	}
+
+}

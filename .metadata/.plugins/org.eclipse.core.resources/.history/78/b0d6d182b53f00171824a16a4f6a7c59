@@ -1,0 +1,8 @@
+
+public class SimpleClient {
+
+	public SimpleClient() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
